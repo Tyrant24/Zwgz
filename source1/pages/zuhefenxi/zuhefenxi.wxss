@@ -1,0 +1,27 @@
+.lefttable{
+  width:246rpx;
+
+}
+.righttable{
+  width:116rpx;
+  white-space: pre-wrap;
+  display: inline-block;
+ 
+}
+.graybg{
+  background: #CCCCCC;
+  height:72rpx;
+}
+.border{
+  border: 1rpx solid #F7F8FA;
+}
+.h72{
+  height: 72rpx;
+}
+
+.h-100{
+  height: 100rpx;
+}
+.h-75{
+  height: 73rpx;
+}

@@ -1,0 +1,5 @@
+<view class="bg-white padding-20 margin-bottom-10" wx:for="{{chongzhilist}}" wx:key='k'>
+  <view class="h5">支付时间：{{item.riqi}}</view>
+  <view class="h5 margin-top-10">套餐时间：{{item.vouchercenter_name}}</view>
+  <view class="h5 margin-top-10">支付金额：￥{{item.money}}</view>
+</view>

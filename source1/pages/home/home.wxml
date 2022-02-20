@@ -1,0 +1,149 @@
+
+<!-- <view wx:if='{{pd==1}}'>
+  <image src="{{uploadpath}}resource/{{res.shoucangtishi}}" class="tsimg"></image>
+</view> -->
+
+<view class="padding-30">
+
+	<view bindtap="search" class="search flex-row flex-center">
+
+		<view class="h5-6 margin-left-20" style="color:#CCCCCC">股票名称/代码/简拼</view>
+		<view class="flex-1"></view>
+		<image class="margin-right-20 icon-15" src='{{uploadpath}}resource/{{res.search}}'></image>
+	</view>
+	<swiper class="margin-top-10" autoplay='true' interval='5000' indicator-dots='true' style='width:688rpx;height:288rpx;' circular>
+		<swiper-item wx:for="{{indexbanner}}" wx:key="k" wx:for-index="idx">
+			<!-- <block  wx:if="{{idx==0}}">
+      <navigator url='/pages/content/content?keycode={{item.keycode}}'>
+        <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:750rpx;height:280rpx;' mode="aspectFill"></image>
+      </navigator>
+      </block> -->
+			<!-- <block wx:if="{{idx>0}}"> -->
+
+			<block>
+				<view  bindtap="activities"  data-url="{{item.url}}" id="{{item.weizhi}}">
+					<image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:688rpx;height:288rpx;' mode="aspectFill"></image>
+				</view>
+			</block>
+
+		</swiper-item>
+	</swiper>
+	<view class="margin-top-30 flex-row flex-center" wx:if='{{instinfo.isgao_value=="Y"}}'>
+
+		<view bindtap="gaopeilv" class="flex-row flex-center bolck">
+			<image class="margin-left-30 icon-40 " src='{{uploadpath}}resource/{{res.peilv}}'></image>
+			<view class="margin-left-20">
+				<view class="h4-5 txt-bold" style="color:#161616">高赔率</view>
+				<view class="h6 " style="color:#A0A0A0">Betting Odds</view>
+			</view>
+		</view>
+		<view bindtap="gaoshenglv" class="flex-row flex-center bolck1 margin-left-15">
+			<image class="margin-left-30 icon-40 " src='{{uploadpath}}resource/{{res.shenglv}}'></image>
+			<view class="margin-left-20">
+				<view class="h4-5 txt-bold" style="color:#161616">高胜率</view>
+				<view class="h6 " style="color:#A0A0A0">Confidence</view>
+			</view>
+		</view>
+
+	</view>
+	<view class="margin-top-10 flex-row flex-center" wx:if='{{instinfo.isgao_value=="Y"}}'>
+
+<view bindtap="hanyepeizhi" class="flex-row flex-center bolck2">
+	<image class="margin-left-30 icon-40 " src='{{uploadpath}}resource/{{res.hanyepeizhi}}'></image>
+	<view class="margin-left-20">
+		<view class="h4-5 txt-bold" style="color:#161616">行业配置</view>
+		<view class="h6 " style="color:#A0A0A0">Industry Pool</view>
+	</view>
+</view>
+<view bindtap="zuhefenxi" class="flex-row flex-center bolck3 margin-left-15">
+	<image class="margin-left-30 icon-40 " src='{{uploadpath}}resource/{{res.zuhefenxi}}'></image>
+	<view class="margin-left-20">
+		<view class="h4-5 txt-bold" style="color:#161616">组合分析</view>
+		<view class="h6 " style="color:#A0A0A0">Portfolio Analysis</view>
+	</view>
+</view>
+
+</view>
+	<view class="margin-top flex-row flex-center">
+
+		<image class="quan" src='{{uploadpath}}resource/{{res.quan}}'></image>
+
+		<view class="h4-5 txt-bold" style="color:#161616;margin-left:10rpx">正在评估的机会</view>
+		<view class="flex-1"></view>
+		<view bindtap="guanli" class="h6" style="#999999"> 管理</view>
+		<image bindtap="guanli" class="margin-right-10 margin-left-10 icon-10" src='{{uploadpath}}resource/{{res.guanli}}'></image>
+	</view>
+
+	<view wx:for="{{memberguzhilist}}" wx:key="k" bindtap="companyinfo" data-id="{{item.company_id}}" class="list flex-row flex-center">
+
+		<view class="margin-left-20 flex-2">
+
+			<view class="h4-5 txt-bold" style="color:#161616">{{item.company_name}}</view>
+			<view class="h7 margin-top-10" style="color:#A0A0A0">昨收价{{item.company_danqianjia}}</view>
+		</view>
+		<view class="flex-8 flex-row flex-center">
+
+			<view class="flex-2  flex-row flex-center">
+				<view class="flex-1"></view>
+				<view>
+					<view class="flex-row flex-column">
+						<view class="h4-5 txt-bold" style="color:#E5382E">{{item.mubiaojia}}</view>
+						<!-- <image wx:if="{{item.guzhi.BB<item.guzhi.shangyiciBB}}" class="jiang" src='{{uploadpath}}resource/{{res.jiang}}'></image>
+						<image wx:else class="jiang" src='{{uploadpath}}resource/{{res.sheng}}'></image> -->
+					</view>
+					<view class="h7 margin-top-10 text-center" style="color:#A0A0A0">目标价</view>
+				</view>
+				<view class="flex-1"></view>
+			</view>
+			<view class="flex-2  flex-row flex-center">
+				<view class="flex-1"></view>
+				<view>
+					<view class="flex-row flex-center">
+						<view class="h4-5 txt-bold" style="color:{{item.guzhi.BB<item.guzhi.shangyiciBB?'#00AB72':'#FF545D'}}">{{item.guzhi.BB>0?item.guzhi.BB:'0'}}</view>
+						<!-- <image wx:if="{{item.guzhi.BB<item.guzhi.shangyiciBB}}" class="jiang" src='{{uploadpath}}resource/{{res.jiang}}'></image>
+						<image wx:else class="jiang" src='{{uploadpath}}resource/{{res.sheng}}'></image> -->
+					</view>
+					<view class="h7 margin-top-10" style="color:#A0A0A0">赔率</view>
+				</view>
+				<view class="flex-1"></view>
+			</view>
+
+			<view class="flex-2  flex-row flex-center">
+				<view class="flex-1"></view>
+				<view>
+					<view class="flex-row flex-bottom">
+						<view class="h4-5 txt-bold" style="color:{{item.guzhi.P<item.guzhi.shangyiciP?'#00AB72':'#FF545D'}}">{{item.guzhi.P*1000/10}}{{}}</view>
+						<view class="h7" style="color:{{item.guzhi.P<item.guzhi.shangyiciP?'#00AB72':'#FF545D'}}">%</view>
+						<!-- <image wx:if="{{item.guzhi.P<item.guzhi.shangyiciP}}" class="jiang" src='{{uploadpath}}resource/{{res.jiang}}'></image>
+						<image wx:else class="jiang" src='{{uploadpath}}resource/{{res.sheng}}'></image> -->
+					</view>
+					<view class="h7 margin-top-10" style="color:#A0A0A0">胜率</view>
+				</view>
+				<view class="flex-1"></view>
+			</view>
+			<view class="flex-2 flex-row flex-column">
+				<view class="flex-row flex-bottom">
+					<view class="{{item.guzhi.F*1000/10==0?'h5':'h4-5'}} txt-bold" style="color:#161616">{{item.guzhi.F*1000/10==0?"0%":item.guzhi.F*1000/10}}</view>
+					<view wx:if="{{item.guzhi.F*1000/10!=0}}" class="h7" style="color:#161616">%</view>
+				</view>
+				<view class="h7 margin-top-10" style="color:#A0A0A0">参考仓位</view>
+			</view>
+
+		</view>
+
+
+	</view>
+
+	<view wx:if="{{memberguzhilist.length==0}}" class="flex-row flex-column">
+		<image class="null " src='{{uploadpath}}resource/{{res.null1}}'></image>
+		<view class="h5 margin-top" style="color:#777777">你还没有添加自选股</view>
+		<view class="h6 margin-top-10" style="color:#CCCCCC">赶紧去添加自选股吧~</view>
+
+		<view bindtap="quedin" class="buttom">去添加</view>
+	</view>
+
+	<view wx:if="{{memberguzhilist.length>4}}" class="text-center margin-top-20 h6">做投资，我们都要有底线</view>
+</view>
+
+
+

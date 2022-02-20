@@ -1,0 +1,97 @@
+.Top {
+  background-color: #2699EC;
+}
+
+.search {
+  width: 688rpx;
+  height: 64rpx;
+  background: #F7F8FA;
+  opacity: 1;
+  border-radius: 294rpx;
+}
+
+.bolck {
+  width: 336rpx;
+  height: 144rpx;
+  background: #EAE5FB;
+  opacity: 1;
+  border-radius: 8rpx;
+}
+
+.bolck1 {
+  width: 336rpx;
+  height: 144rpx;
+  background: #FFFADB;
+  opacity: 1;
+  border-radius: 8rpx;
+}
+.bolck2 {
+  width: 336rpx;
+  height: 144rpx;
+  background: #FEE7E7;
+  opacity: 1;
+  border-radius: 8rpx;
+}
+.bolck3 {
+  width: 336rpx;
+  height: 144rpx;
+  background: #E1F3FF;
+  opacity: 1;
+  border-radius: 8rpx;
+}
+
+.quan {
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  margin-top: -15rpx;
+}
+
+.list {
+  width: 688rpx;
+  height: 144rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 8rpx 48rpx rgba(186, 192, 210, 0.12);
+  opacity: 1;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}
+.jiang{
+  width:10rpx;
+  height: 24rpx;
+  margin-left:12rpx;
+  margin-top:5rpx;
+}
+.null{
+  width: 400rpx;
+height: 206rpx;
+background: #FFFFFF;
+opacity: 1;
+margin-top: 70rpx;
+}
+.buttom{
+  width: 528rpx;
+height: 96rpx;
+background: linear-gradient(270deg, #DB2026 0%, #FF7646 100%);
+
+opacity: 1;
+border-radius: 74rpx;
+text-align: center;
+line-height: 96rpx;
+font-size: 32rpx;
+color: #FFFFFF;
+margin-top: 120rpx;
+}
+.btns{
+  position: absolute;
+  width:100vw;
+  height: 100vh;
+  z-index: 9999;
+}
+.tsimg {
+  width: 452rpx;
+  height: 150rpx;
+  z-index: 100;
+  position: fixed;
+  right: 34rpx;
+}

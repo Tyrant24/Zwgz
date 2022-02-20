@@ -1,0 +1,150 @@
+<ion-header>
+  <div class="padding-40">
+    <div class="flex-row">
+      <div class="flex-1"></div>
+      <div  (click)='navigate("memberinfo",{},true)'>
+        <div *ngIf="MemberInfo!=null">
+          <div class="text-center">
+            <div><img [src]="getMemberLogo(MemberInfo.avatarUrl)"
+                class="icon-75 radius-50 border-gray-3" /></div>
+            <div class="margin-top-20 txt-bold">{{MemberInfo.nickName}}</div>
+          </div>
+        </div>
+        <div *ngIf="MemberInfo==null">
+          <div class="text-center">
+            <div><img src="{{uploadpath}}inst/{{InstInfo.logo}}" class="icon-75 radius-50 border-gray-3" /></div>
+            <div class="margin-top-20 txt-bold">请点击登录</div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-1">
+        <div class="flex-1 text-right">
+          <ion-button fill='clear' (click)='navigate("info-center",{},true)'>
+            <ion-icon slot="icon-only" name="notifications-outline"></ion-icon>
+            <ion-badge color="danger" class="ckkdanger" *ngIf="MemberInfo!=null&&MemberInfo.notifycount>0">
+              {{MemberInfo.notifycount}}
+            </ion-badge>
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="padding-30 ">
+    <div class="flex-row text-center">
+      <div style="width:20px;"></div>
+      <div class="flex-1" (click)='navigate("myfav",{},true)'>
+        <div>
+          <img src="{{uploadpath}}resource/{{res.myfav}}" class="icon-20" />
+        </div>
+        <div class="margin-top-5 txt-bold h6">我的收藏</div>
+      </div>
+      <div class="flex-1" (click)='navigate("myfocus",{},true)'>
+        <div>
+          <img src="{{uploadpath}}resource/{{res.myfocus}}" class="icon-20" />
+        </div>
+        <div class="margin-top-5 txt-bold h6">我的关注</div>
+      </div>
+      <div class="flex-1" (click)='navigate("myquestion",{},true)'>
+        <div>
+          <img src="{{uploadpath}}resource/{{res.myquestion}}" class="icon-20" />
+        </div>
+        <div class="margin-top-5 txt-bold h6">我的提问</div>
+      </div>
+      <div class="flex-1" (click)='navigate("mycontent",{},true)'>
+        <div>
+          <img src="{{uploadpath}}resource/{{res.mycontent}}" class="icon-20" />
+        </div>
+        <div class="margin-top-5 txt-bold h6">我的回复</div>
+      </div>
+      <div style="width:20px;"></div>
+    </div>
+  </div>
+  <div style="height:3px" class="bg-gray"></div>
+  <div class="padding-30 border-bottom" (click)='navigate("valuationrecord",{},true)'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.jilu}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">估值记录</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+  <div class="padding-30 border-bottom" (click)='navigate("myreply",{},true)'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.lianxi}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">我的评论</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+  <div class="padding-30 border-bottom" (click)='navigate("paymentrecord",{},true)'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.wechatpay}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">支付记录</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+  <div style="height:3px" class="bg-gray"></div>
+  <div class="padding-30 border-bottom" (click)='navigate("aboutus")'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.aboutus}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">关于我们</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+  <div class="padding-30 border-bottom" (click)='navigate("feedback")'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.fankui}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">意见反馈</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+
+
+  <div class="padding-30 border-bottom" (click)='showContent("隐私声明","yinsishengming")'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.yonghuxieyi}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">隐私政策</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+
+  <div class="padding-30 border-bottom" (click)='showContent("用户协议","yonghuxieyi")'>
+    <div class="flex-row flex-center">
+      <div class="margin-right">
+        <img src="{{uploadpath}}resource/{{res.yinsizhengce}}" class="icon-20" />
+      </div>
+      <div class="margin-left flex-1">用户协议</div>
+      <div>
+        <img src="{{uploadpath}}resource/{{res.right}}" class="icon-10" />
+      </div>
+    </div>
+  </div>
+  <div class="margin-top padding-20" *ngIf="MemberInfo!=null">
+    <ion-button expand="block" (click)="tryLogout()">切换账户</ion-button>
+  </div>
+</ion-content>

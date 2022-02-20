@@ -1,0 +1,44 @@
+.catitem {
+    width: 30vw;
+}
+
+
+.companyname{
+    padding:2px 4px 2px 4px;
+    border-radius: 3px;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+    margin-top: 6px;
+    border-radius: 50%;
+}
+
+
+.ll .flex-1{
+    min-height: 15px;
+  }
+  .tanchu{
+
+
+     position: fixed;
+     width: 300px;
+     height: 400px;
+     background: white;  
+
+  }
+  .menceng{
+    width: 100vw;
+    height: 100vh;
+    background: #929292;
+    z-index: 999;
+  }
+
+  .juzhong{
+      position: fixed;
+      width: 100vw;
+      height:100vh;
+      top: 0px;
+      left: 0px;;
+  }

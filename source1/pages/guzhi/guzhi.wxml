@@ -1,0 +1,234 @@
+<view class="top flex-row flex-center">
+	<image class="icon-15 margin-left-30" src='{{uploadpath}}resource/{{res.jinggao}}'></image>
+	<view class="h5-6 margin-left-5" style="color:#FE752E">默认显示上次估值参数，点击数字可调整</view>
+</view>
+<view class="bg-white">
+
+	<view class="list">
+		<view class="flex-row flex-center">
+
+			<view class="h4-5" style="colro:#161616">估值用的折现率</view>
+			<view class="flex-1"></view>
+			<view bindtap="tiaozhen" data-id="1" class="h4-5" style="color:#DB2026">{{value}}%</view>
+			<image bindtap="tiaozhen" data-id="1" class="tiaozhen margin-left-10" src='{{uploadpath}}resource/{{res.tiaozhen}}'></image>
+		</view>
+		<view wx:if="{{!show1}}" class="h6 margin-top-5" style="color:#A0A0A0">建议是4%，区间为0%-8%，默认值4%！</view>
+		<!-- <view class="h6 margin-top-5" style="color:#A0A0A0">这个作为估值的折现率哦，一般5%~15%</view> -->
+		<view wx:if="{{show1}}" class="tz margin-top-5 ">
+			<view class="padding-30">
+				<view class="flex-row flex-center">
+					<view class="h6 txt-bold" style="color:#161616">选择比例</view>
+					<view class="h6 margin-left-20  txt-bold" style="color:#161616">{{value}}%</view>
+				</view>
+
+				<slider block-color="#FB6D43" model:value="{{value}}" activeColor="#FF7646" backgroundColor="#F7F8FA" block-size="15" class="margin-left-20" bindchange="sliderchange" min="0" max="8" />
+				<view class="flex-row flex-center">
+					<view class="h6" style=" color:{{value==0?'#161616':'#A0A0A0'}}">0%</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value==4?'#161616':'#A0A0A0'}}">4%</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value==8?'#161616':'#A0A0A0'}}">8%</view>
+				</view>
+
+
+
+			</view>
+		</view>
+	</view>
+
+
+	<view class="list">
+		<view class="flex-row flex-center">
+
+			<view class="h4-5" style="colro:#161616">未来3年自由现金流的增长率预期</view>
+			<view class="flex-1"></view>
+			<view bindtap="tiaozhen" data-id="2" class="h4-5" style="color:#DB2026">{{value2}}%</view>
+			<image bindtap="tiaozhen" data-id="2" class="tiaozhen margin-left-10" src='{{uploadpath}}resource/{{res.tiaozhen}}'></image>
+		</view>
+		<view wx:if="{{!show2}}" class="h6 margin-top-5" style="color:#A0A0A0">基于昨收盘市值和净现金流计算的蕴含增长率是{{companydata.g*1000/10}}%，请设置你认为合理的增速，如高于{{companydata.g*1000/10}}%则有投资价值。</view>
+		<!-- <view class="h6 margin-top-5" style="color:#A0A0A0">这个作为估值的折现率哦，一般5%~15%</view> -->
+		<view wx:if="{{show2}}" class="tz margin-top-5 ">
+			<view class="padding-30">
+				<view class="flex-row flex-center">
+					<view class="h6 txt-bold" style="color:#161616">选择比例</view>
+					<view class="h6 margin-left-20  txt-bold" style="color:#161616">{{value2}}%</view>
+				</view>
+
+				<slider block-color="#FB6D43" model:value="{{value2}}" activeColor="#FF7646" backgroundColor="#F7F8FA" block-size="15" class="margin-left-20" min="0" max="50" />
+				<view class="flex-row flex-center">
+					<view class="h6" style=" color:{{value2==0?'#161616':'#A0A0A0'}}">0%</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value2==25?'#161616':'#A0A0A0'}}">25%</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value2==50?'#161616':'#A0A0A0'}}">50%</view>
+				</view>
+
+
+
+			</view>
+		</view>
+	</view>
+
+
+
+	<view class="list">
+		<view class="flex-row flex-center">
+
+			<view class="h4-5" style="colro:#161616">未来4-6年自由现金流的增长率预期</view>
+			<view class="flex-1"></view>
+			<view bindtap="tiaozhen" data-id="3" class="h4-5" style="color:#DB2026">{{value3}}%</view>
+			<image bindtap="tiaozhen" data-id="3" class="tiaozhen margin-left-10" src='{{uploadpath}}resource/{{res.tiaozhen}}'></image>
+		</view>
+		<view wx:if="{{!show3}}" class="h6 margin-top-5" style="color:#A0A0A0">基于昨收盘市值和净现金流计算的蕴含增长率是{{companydata.g*1000/10}}%，请设置你认为合理的增速，如高于{{companydata.g*1000/10}}%则有投资价值。</view>
+		<!-- <view class="h6 margin-top-5" style="color:#A0A0A0">这个作为估值的折现率哦，一般5%~15%</view> -->
+		<view wx:if="{{show3}}" class="tz margin-top-5 ">
+			<view class="padding-30">
+				<view class="flex-row flex-center">
+					<view class="h6 txt-bold" style="color:#161616">选择比例</view>
+					<view class="h6 margin-left-20  txt-bold" style="color:#161616">{{value3}}%</view>
+				</view>
+
+				<slider block-color="#FB6D43" model:value="{{value3}}" activeColor="#FF7646" backgroundColor="#F7F8FA" block-size="15" class="margin-left-20" min="0" max="50" />
+				<view class="flex-row flex-center">
+					<view class="h6" style=" color:{{value3==0?'#161616':'#A0A0A0'}}">0%</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value3==25?'#161616':'#A0A0A0'}}">25%</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value3==50?'#161616':'#A0A0A0'}}">50%</view>
+				</view>
+
+
+
+			</view>
+		</view>
+	</view>
+</view>
+
+
+
+
+<!-- <view class="bg-white margin-top-20">
+
+	<view class="list1">
+		<view class="flex-row flex-center">
+
+			<view class="h4-5" style="colro:#161616">商业模式打分</view>
+			<view class="flex-1"></view>
+			<view bindtap="tiaozhen" data-id="4" class="h4-5" style="color:#DB2026">{{value4}}</view>
+			<image bindtap="tiaozhen" data-id="4" class="tiaozhen margin-left-10" src='{{uploadpath}}resource/{{res.tiaozhen}}'></image>
+		</view>
+
+
+		<view wx:if="{{show4}}" class="tz margin-top-5 ">
+			<view class="padding-30">
+				<view class="flex-row flex-center">
+					<view class="h6 txt-bold" style="color:#161616">你的打分</view>
+					<view class="h6 margin-left-20  txt-bold" style="color:#161616">{{value4}}分</view>
+				</view>
+
+				<slider block-color="#FB6D43" model:value="{{value4}}" activeColor="#FF7646" backgroundColor="#F7F8FA" block-size="15" class="margin-left-20" bindchange="sliderchange" step="10" min="10" max="100" />
+				<view class="flex-row flex-center">
+					<view class="h6" style=" color:{{value4==0?'#161616':'#A0A0A0'}}">10</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value4==50?'#161616':'#A0A0A0'}}">55</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value4==100?'#161616':'#A0A0A0'}}">100</view>
+				</view>
+
+
+
+			</view>
+		</view>
+	</view>
+
+
+	<view class="list1">
+		<view class="flex-row flex-center">
+
+			<view class="h4-5" style="colro:#161616">团队能力打分</view>
+			<view class="flex-1"></view>
+			<view bindtap="tiaozhen" data-id="5" class="h4-5" style="color:#DB2026">{{value5}}</view>
+			<image bindtap="tiaozhen" data-id="5" class="tiaozhen margin-left-10" src='{{uploadpath}}resource/{{res.tiaozhen}}'></image>
+		</view>
+
+
+		<view wx:if="{{show5}}" class="tz margin-top-5 ">
+			<view class="padding-30">
+				<view class="flex-row flex-center">
+					<view class="h6 txt-bold" style="color:#161616">你的打分</view>
+					<view class="h6 margin-left-20  txt-bold" style="color:#161616">{{value5}}分</view>
+				</view>
+
+				<slider block-color="#FB6D43" model:value="{{value5}}" activeColor="#FF7646" backgroundColor="#F7F8FA" block-size="15" class="margin-left-20" bindchange="sliderchange" step="10" min="10" max="100" />
+				<view class="flex-row flex-center">
+					<view class="h6" style=" color:{{value5==0?'#161616':'#A0A0A0'}}">10</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value5==50?'#161616':'#A0A0A0'}}">55</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value5==100?'#161616':'#A0A0A0'}}">100</view>
+				</view>
+
+
+
+			</view>
+		</view>
+	</view>
+
+
+
+	<view class="list1">
+		<view class="flex-row flex-center">
+
+			<view class="h4-5" style="colro:#161616">市场空间打分</view>
+			<view class="flex-1"></view>
+			<view bindtap="tiaozhen" data-id="6" class="h4-5" style="color:#DB2026">{{value6}}</view>
+			<image bindtap="tiaozhen" data-id="6" class="tiaozhen margin-left-10" src='{{uploadpath}}resource/{{res.tiaozhen}}'></image>
+		</view>
+
+	
+		<view wx:if="{{show6}}" class="tz margin-top-5 ">
+			<view class="padding-30">
+				<view class="flex-row flex-center">
+					<view class="h6 txt-bold" style="color:#161616">你的打分</view>
+					<view class="h6 margin-left-20  txt-bold" style="color:#161616">{{value6}}分</view>
+				</view>
+
+				<slider block-color="#FB6D43" model:value="{{value6}}" activeColor="#FF7646" backgroundColor="#F7F8FA" block-size="15" class="margin-left-20" bindchange="sliderchange" step="10" min="10" max="100" />
+				<view class="flex-row flex-center">
+					<view class="h6" style=" color:{{value6==0?'#161616':'#A0A0A0'}}">10</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value6==50?'#161616':'#A0A0A0'}}">55</view>
+					<view class="flex-1"></view>
+					<view class="h6" style=" color:{{value6==100?'#161616':'#A0A0A0'}}">100</view>
+				</view>
+
+
+
+			</view>
+		</view>
+	</view>
+
+</view> -->
+
+<view class="bg-white margin-top-20 padding-20">
+	<view class="flex-row flex-center">
+
+		<view class="h4-5">用于估值的经营资产自由净现金流</view>
+		<view class="flex-1"></view>
+		<input placeholder-style="color:#DB2026" type="number" placeholder="{{CF}}" bindinput="xz" class="input1"></input>
+		<view class="margin-left-5 h6">亿元</view>
+
+	</view>
+	<view class="h6 margin-top-20" style="color:#777777">默认显示过去3年的加权平均，如果小于1亿元显示0
+	</view>
+	<view class="h6" style="color:#777777">可以按你的理解设置经营资产自由净现金流作为估值的基础</view>
+	<view class="h6" style="color:#777777">因行业周期和生意模式不同，但当前的现金流不一定能反映未来</view>
+</view>
+<!-- <button   bindtap="getUserProfile" class="clear-button btns btn " style="color:#F05138" wx:if="{{memberinfo.avatarUrl==''}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">
+	<view  class="buttom">确定</view>
+</button> -->
+<button   bindtap="getUserProfile" class="clear-button btns btn " style="color:#F05138" wx:if="{{memberinfo.avatarUrl==''||memberinfo.nickName=='微信用户'}}" >
+	<view  class="buttom">确定</view>
+</button>
+
+<view  wx:if="{{memberinfo.avatarUrl!=''&&btnshow==true&&memberinfo.nickName!='微信用户'}}" bindtap="quedin" class="buttom">确定</view>

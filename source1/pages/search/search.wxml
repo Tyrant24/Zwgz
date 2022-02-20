@@ -1,0 +1,48 @@
+<view class="padding-30">
+	<view class="flex-row flex-center">
+		<view class="search flex-row flex-center">
+			<input model:value="{{value}}" bindinput="search" placeholder="股票名称/代码/简拼" placeholder-class="h5-6" placeholder-style="color:#CCCCCC" class="margin-left-20   h5-6 flex-1"></input>
+			<!-- <view class="h5-6 margin-left-20" style="color:#CCCCCC">股票名称/代码/简拼</view> -->
+
+			<image bindtap="search" class="margin-right-20 padding-10 icon-15" src='{{uploadpath}}resource/{{res.search}}'></image>
+		</view>
+
+	</view>
+
+	<view wx:for="{{companylist}}"  bindtap="guzhi" data-id="{{item}}"  wx:key="k" class="list flex-row flex-center">
+
+		<view class="margin-left-30">
+		<view class="flex-row flex-center">
+			<view class="h4-5 txt-bold" style="color:#161616">{{item.name}}</view>
+  <view wx:if="{{item.isjinron>0}}" class="h6 margin-left-20" style="color:#777777">我们不对金融类公司做估值</view>
+			</view>
+			<!-- <view class="h7 " style="color:#A0A0A0">当前价{{item.danqianjia}}（{{item.zhandie>0?'+':''}}{{item.zhandie}}%）</view> -->
+			<view class="margin-top-5 h7" style="color:#A0A0A0">{{item.id}}</view>
+		</view>
+		<view class="flex-1"></view>
+
+		<view wx:if="{{item.member_id!=memberinfo.id&&item.isjinron==0}}"  class="flex-row flex-column margin-right-40">
+
+			<image class=" icon-15" src='{{uploadpath}}resource/{{res.zixuan}}'></image>
+			<view class="h7 margin-top-15" style="color:#333333">加自选</view>
+		</view>
+		<view wx:if="{{item.member_id==memberinfo.id&&item.isjinron==0}}" data-id="{{item.id}}" class="flex-row flex-column margin-right-40">
+
+			<image class=" icon-15" src='{{uploadpath}}resource/{{res.yitianjia}}'></image>
+			<view class="h7 margin-top-15" style="color:#333333">已添加</view>
+		</view>
+
+	<view wx:if="{{item.isjinron>0}}" data-id="{{item.id}}" class="flex-row flex-column margin-right-40">
+
+			<image class=" icon-15" src='{{uploadpath}}resource/{{res.bkj}}'></image>
+			<view class="h7 margin-top-15" style="color:#A0A0A0">不可加</view>
+		</view>
+
+		<view>
+
+		</view>
+	</view>
+
+	<view class="h5-6 margin-top-20" style="color:#A0A0A0">Tips：首次添加股票，需要您对其进行估值。</view>
+	<view class="h5-6 margin-top-5" style="color:#A0A0A0">会员不限制估值公司上限</view>
+</view>

@@ -1,0 +1,64 @@
+<view class='cu-custom white-block'>
+	<view class="cu-bar fixed white-block" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+		<navigator class='action' bindtap="backHome" open-type="navigateBack" delta="1" hover-class="none">
+			<text class='cuIcon-back' style="color:#000000"></text>
+		</navigator>
+		<view class='content txt-bold' style='top:{{StatusBar}}px;color:#000000'>行业配置池</view>
+	</view>
+</view>
+
+<scroll-view  lower-threshold="100" bindscrolltolower="scrolltolower" style="height:{{clientHeight}}px;" scroll-y="true">
+  <view class="padding-30">
+	<view style="height:{{CustomBar}}px"></view>
+
+<view class="po-fixed white-block" style="top:{{CustomBar}}px;left:0rpx; z-index: 99;width:100vw">
+  <view bindtap="search   " class="search flex-row flex-center margin-auto" >
+  <input type="text" class="h5-6 margin-left-30 flex-1" placeholder="搜索券商名称" placeholder-class="plastyle" model:value="{{value}}" bindinput="search"/>
+  <image class="margin-right-30 icon-15" src='{{uploadpath}}resource/{{res.search}}' bindtap="search"></image>
+</view>
+</view>
+
+
+<view class="h-64"></view>
+
+
+
+<view class="box-shadow radius-8 white-block padding-20 margin-top-30" wx:for="{{brokerlist}}" wx:key="k" wx:for-item="itemName">
+  <view class="flex-row flex-center">
+    <view class="txt-1 f-32 txt-bold">{{itemName.companyname}}</view>
+    <view class="flex-1"></view>
+    <view class="txt-3 h6">{{itemName.time}}</view>
+  </view>
+
+  <!-- <view class="po-relative"> -->
+  <view class="margin-top-10" style="display: flex;display: -webkit-flex;flex-direction: row;flex-wrap: wrap;">
+    <view wx:for="{{itemName.labelist}}" wx:key="k" wx:for-item="items" class="bd-1  txt-2 h7 margin-left-10 radius-4 margin-top-20" style="padding:2rpx 10rpx;" >{{items}}</view>
+  </view>
+  <view class="margin-top-20 flex-row ">
+    <image class="zou" src='{{uploadpath}}resource/{{res.zou}}' style="flex:none"></image>
+    <view class="flex-1">
+      <text class="txt-1 h6 txt-bold txt-backgroun">{{itemName.content}}</text> 
+    </view>
+    <view class="po-relative w-30" style="flex:none">
+  <image class="zou po-absolute" src='{{uploadpath}}resource/{{res.you}}' style="flex:none;bottom:-32rpx;right:0" ></image>
+    </view>
+    <!-- <image class="zou " src='{{uploadpath}}resource/{{res.you}}' style="flex:none;" ></image> -->
+      <!-- <image class="zou po-absolute" src='{{uploadpath}}resource/{{res.you}}' style="flex:none;bottom:-32rpx;right:0" ></image> -->
+
+    
+  </view>
+</view>
+<!-- </view> -->
+
+<view class="margin-top-100" wx:if="{{brokerlist.length==0}}">
+  <image class="img-sty wh-200" src='{{uploadpath}}resource/{{res.nohave}}' ></image>
+  <view class="txt-3 h6 text-center margin-top-20">暂无数据</view>
+</view>
+
+</view>
+</scroll-view>
+
+
+<!-- <view class="background">111</view> -->
+
+

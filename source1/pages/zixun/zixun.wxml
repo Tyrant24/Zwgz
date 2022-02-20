@@ -1,0 +1,68 @@
+<view wx:if="{{zixun.length>0}}">
+	<view wx:for="{{list}}" wx:for-index="idx1" wx:for-item="qqq">
+
+		<view class="padding-300 h5" style="color:#595959;background:#F7F8FA">{{qqq.xianshiriqi}} {{qqq.xinqi}}</view>
+		<view class="padding-30" style="padding-bottom:10rpx">
+			<view wx:for="{{qqq.subList}}" wx:for-index="idx" wx:for-item="item" class="list">
+				<view class="leftline"></view>
+				<view class="flex-row ">
+					<view class="red">
+					</view>
+					<view class=" contnt">
+						<view class="flex-row flex-center">
+							<view class="h5-6 " style="color:#A0A0A0">{{item.shijian}}</view>
+							<!-- <view bindtap="tiaozhuan" data-id="{{item.company_id}}" class="h5 margin-left-20  text-bold" style="color:#DB2026">#{{item.cname}} 赔率{{item.peilv>0?item.peilv:'0'}} 胜率{{item.shenglv*1000/10}}%</view> -->
+							<view bindtap="tiaozhuan" data-id="{{item.company_id}}" class="h5 margin-left-20  text-bold" style="color:#DB2026">#{{item.cname}} 目标价{{item.mubiaojia}}元 胜率{{item.shenglv*1000/10}}%</view>
+						</view>
+
+						<view bindtap="zhankai" data-item="{{idx}}" data-item1="{{idx1}}" class=" margin-top-5 {{item.xz==false?'chaochu3':''}}  h5" style="color:#333333;line-height: 52rpx;">
+							{{item.content}}
+						</view>
+						<view wx:if="{{item.type=='A'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">如果公司商业模式好，出现这个讯息的可能性多大?</view>
+						<view wx:if="{{item.type=='B'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">如果公司市场空间大，出现这个讯息的可能性多大?</view>
+						<view wx:if="{{item.type=='C'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">如果公司管理团队优秀，出现这个讯息的可能性多大?</view>
+
+						<view class="flex-row flex-center margin-top-30">
+
+							<view bindtap="daan1" data-id="1" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan1==1?'xz1':'xz'}} flex-1">肯定</view>
+							<view bindtap="daan1" data-id="2" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan1==2?'xz1':'xz'}} margin-left-40 flex-1">很可能</view>
+							<view bindtap="daan1" data-id="3" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan1==3?'xz1':'xz'}} margin-left-40 flex-1">不确定</view>
+							<view bindtap="daan1" data-id="4" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan1==4?'xz1':'xz'}} margin-left-40 flex-1">不太可能</view>
+						</view>
+						<view wx:if="{{item.type=='A'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">如果公司商业模式不好，出现这个讯息的可能性多大?</view>
+						<view wx:if="{{item.type=='B'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">如果公司市场空间小，出现这个讯息的可能性多大?</view>
+						<view wx:if="{{item.type=='C'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">如果公司管理团队较差，出现这个讯息的可能性多大?</view>
+						<view class="flex-row  flex-center margin-top-30">
+
+							<view bindtap="daan2" data-id="1" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan2==1?'xz1':'xz'}} flex-1">肯定</view>
+							<view bindtap="daan2" data-id="2" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan2==2?'xz1':'xz'}} margin-left-40 flex-1">很可能</view>
+							<view bindtap="daan2" data-id="3" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan2==3?'xz1':'xz'}} margin-left-40 flex-1">不确定</view>
+							<view bindtap="daan2" data-id="4" data-item="{{idx}}" data-item1="{{idx1}}" class="{{item.daan2==4?'xz1':'xz'}} margin-left-40 flex-1">不太可能</view>
+						</view>
+						<view style="height:10rpx"></view>
+						<view wx:if="{{idx!=qqq.subList.length-1}}" class="xian"></view>
+					</view>
+
+				</view>
+
+			</view>
+		</view>
+	</view>
+
+
+
+</view>
+
+
+
+
+<view wx:if="{{zixun.length==0}}" class="flex-row flex-column">
+	<image class="null " src='{{uploadpath}}resource/{{res.null1}}'></image>
+	<view class="h5 margin-top" style="color:#777777">你还没有添加自选股</view>
+	<view class="h6 margin-top-10" style="color:#CCCCCC">赶紧去添加自选股吧~</view>
+
+	<view bindtap="quedin" class="buttom">去添加</view>
+</view>
+
+
+<view wx:if="{{zixun.length>4}}" class="text-center margin-top-20 h6">做投资，我们都要有底线</view>

@@ -1,0 +1,69 @@
+/* pages/activitydetails/activitydetails.wxss */
+.img{
+  width: 100%;
+  height: 300rpx;
+  }
+  
+  .catitem{
+    width: 250rpx;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
+  }
+  .catitem .m{
+    color:#A9A6AB;
+    padding-top:22rpx;
+    padding-bottom: 18rpx;
+    margin-left: 120rpx;
+    margin-right: 120rpx;
+    border-bottom: 4rpx;
+  }
+
+  .catitem .ma{
+    color:#F05138;
+    border-bottom: 4rpx solid #F05138;
+  }
+  
+  
+  /* .maintab{
+    height: calc( 100vh - 370rpx );
+  } */
+  
+  .c-right{
+    margin-right:10rpx;
+  }
+  .padding-comment{
+    padding-top: 16rpx;
+    padding-bottom: 16rpx;
+    padding-left: 32rpx;
+    padding-right: 32rpx;
+  }
+  .padding-comment textarea{
+    width: 97%;
+  }
+  .fixedbottom{
+    position: fixed;
+    bottom: 0rpx;
+    width: 750rpx;
+    z-index: 100;
+  }
+  .bg-black{
+    position: fixed;
+    top: 0rpx;
+    left: 0rpx;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+  }
+  .btn{
+  
+    padding-right:20rpx;
+    font-size: 28rpx;
+
+  }
+
+  

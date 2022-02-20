@@ -1,0 +1,66 @@
+.top {
+  width: 750rpx;
+  height: 64rpx;
+  background: rgba(254, 117, 46, 0.05);
+
+}
+
+page {
+  background: #F7F8FA;
+}
+
+.list {
+
+  padding: 20rpx;
+  margin: 0 30rpx 0 30rpx;
+  padding: 15rpx 0 15rpx 0;
+  border-bottom: 2rpx solid #F5F5F5;
+
+}
+.list1{
+
+  padding: 20rpx;
+  margin: 0 30rpx 0 30rpx;
+  padding: 30rpx 0 30rpx 0;
+  border-bottom: 2rpx solid #F5F5F5;
+
+}
+.tiaozhen {
+  width: 13rpx;
+  height: 24rpx;
+}
+
+.tz {
+  width: 688rpx;
+
+  background: #FFFFFF;
+  box-shadow: 0px 8rpx 16rpx rgba(0, 0, 0, 0.08);
+  opacity: 1;
+}
+
+.buttom {
+  width: 560rpx;
+  height: 96rpx;
+  background: linear-gradient(268deg, #DB2026 0%, #FF7646 100%);
+  box-shadow: 0px 8rpx 64rpx rgba(227, 52, 45, 0.24);
+  opacity: 1;
+  border-radius: 74rpx;
+  text-align: center;
+  line-height: 96rpx;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  margin-left: 96rpx;
+  margin-top: 28rpx;
+  margin-bottom: 128rpx;
+}
+.input1{
+  width: 100rpx;
+height: 44rpx;
+border: 2rpx solid #DDDDDD;
+opacity: 1;
+border-radius: 8rpx;
+line-height: 44rpx;
+text-align: center;
+color:#DB2026;
+font-size: 26rpx;
+}

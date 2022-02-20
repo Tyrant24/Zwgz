@@ -1,0 +1,40 @@
+<view class="flex-row flex-center padding-left-16 margin-top" style="position:relative;">
+  <image src="{{uploadpath}}resource/{{res.jinhao}}" mode="widthFix" class="jin_img"></image>
+  <view class="txt-bold txt-16">{{timu}}</view>
+  <view class="linese"></view>
+</view>
+<view >
+  <view class="padding-left-16 " wx:for="{{diaoyanqeslist}}" wx:key='k' wx:for-index='idx'>
+    <view class="bortop"></view>
+    <view class="flex-row flex-center">
+      <view class="flex-1 flex-row flex-center">
+        <image src="{{item.member.avatarUrl}}" class="icon-40 radius-50"></image>
+        <view class="flex-1 margin-left-8">
+          <view class="h5 txt-16 txt-bold flex-row flex-center">{{item.member.nickName}} <view class="jinhua"
+              wx:if="{{item.member.zhiding_value=='Y'}}">精华</view>
+          </view>
+
+          <view class="flex-row flex-center margin-top-4" wx:if="{{item.member.xainshi=='A'}}">
+            <view class="h7 txt-59 margin-right-5">昨收{{item.company_danqianjia}}</view>
+            <view class="h7 txt-59 margin-right-5">目标价{{item.mubiaojia}}</view>
+            <view class="h7 txt-59">胜率{{item.P*1000/10}}%</view>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="guanz h7">已关注</view> -->
+    </view>
+
+    <view class="h5-6 txt-16 margin-top-10 lh40" >{{item.name}}</view>
+   
+
+
+  </view>
+</view>
+
+
+<view wx:if="{{diaoyanqeslist.length==0}}" class="flex-row flex-column">
+	<image class="null " src='{{uploadpath}}resource/{{res.null1}}'></image>
+	<view class="h5 margin-top" style="color:#777777">暂时没有调研</view>
+
+</view>
+

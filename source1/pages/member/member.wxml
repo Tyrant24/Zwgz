@@ -1,0 +1,17 @@
+
+
+<view class="margin-30 bg-white radius-10" wx:for="{{articlelist}}" wx:key='k' bindtap="todetails" id='{{item.id}}' data-item="{{item}}">
+  <view style="position:relative;">
+    <image src="{{uploadpath}}article/{{item.img}}" class="act_img"></image>
+    <view class="huiyuan"  wx:if="{{memberinfo.ismember_value!='Y' && item.wzstatus=='A'}}">{{item.wzstatus_name}}</view>
+  </view>
+  
+    <view class="padd11">
+      <view class="chaochu txt-bold" style="color:#101010;">{{item.name}}</view>
+      <view class="flex-row flex-cengter margin-top-10">
+      <view  class="h5 chaochu2 lh40" style="color:#9B9B9B;">{{item.jianjie}}</view>
+      <view class="flex-1"></view>
+      <view  class="h6  text-right margin-left-5" style="color:#9B9B9B;">已阅读：{{item.liulan}}</view>
+      </view>
+    </view>
+</view>

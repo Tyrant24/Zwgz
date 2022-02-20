@@ -1,0 +1,89 @@
+/* pages/chongzhi/chongzhi.wxss */
+Page {
+  background: #F7F7F7 ;
+}
+.touxiang {
+  width: 66rpx;
+  height: 66rpx;
+  margin-right: 16rpx;
+}
+.padding-16 {
+  padding: 34rpx 0 40rpx 32rpx;
+}
+.vouch {
+  width: 214rpx;
+  padding: 48rpx 0;
+  box-shadow: 0 4rpx 8rpx 0 rgba(178,178,178,0.50);
+  border-radius: 16rpx;
+  margin-right: 20rpx;
+  margin-bottom: 40rpx;
+  margin-top: 40rpx;
+  border: 2rpx solid #ffffff;
+}
+.border-ff {
+  border: 2rpx solid #FF6B6C;
+}
+.f-27 {
+  font-size: 54rpx;
+}
+.ty_img {
+  width: 28rpx;
+  height: 28rpx;
+}
+.quyi {
+  background:#F9F9F9 ;
+  padding-left: 38rpx ;
+  padding-right: 32rpx;
+  padding-top: 46rpx;
+  padding-bottom: 52rpx;
+  margin-top: 24rpx;
+  border-radius: 4rpx;
+}
+.qy_img {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 40rpx;
+}
+.padding-12 {
+  padding: 30rpx 24rpx;
+}
+.posibot {
+  width: 670rpx;
+  padding: 24rpx 40rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+}
+.fuk {
+  width: 344rpx;
+  height: 88rpx;
+  background:#ED3332;
+  border-radius: 44rpx;
+  color: #ffffff;
+  line-height: 88rpx;
+  text-align: center;
+}
+.height-120 {
+  height: 120rpx;
+}
+.chaozhi {
+  padding: 3rpx 10rpx 5rpx;
+  background: #323232;
+  font-size: 20rpx;
+  color: #BA9C6D;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 16rpx 0 16rpx 0;
+  z-index: 1;
+}
+.fuzhu {
+  width: 646rpx;
+  height: 80rpx;
+  background: #E02D2B;
+  color: #ffffff;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+}

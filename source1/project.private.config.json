@@ -1,0 +1,88 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": -1,
+          "name": "股票管理",
+          "pathName": "pages/gupiaoguanli/gupiaoguanli",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "股票搜索",
+          "pathName": "pages/search/search",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 2,
+          "name": "估值",
+          "pathName": "pages/guzhi/guzhi",
+          "query": "id=000066",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "pages/companyinfo/companyinfo",
+          "pathName": "pages/companyinfo/companyinfo",
+          "query": "id=66",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/zixun/zixun",
+          "pathName": "pages/zixun/zixun",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/activitydetails/activitydetails",
+          "pathName": "pages/activitydetails/activitydetails",
+          "query": "id=4",
+          "scene": null
+        },
+        {
+          "name": "调研列表",
+          "pathName": "pages/diaoyan/diaoyan",
+          "query": "id=2260&company_name=*ST德奥",
+          "scene": null
+        },
+        {
+          "name": "会员",
+          "pathName": "pages/member/member",
+          "query": "id=2260&company_name=*ST德奥",
+          "scene": null
+        },
+        {
+          "name": "众问会员",
+          "pathName": "pages/chongzhi/chongzhi",
+          "query": "url=https%3A%2F%2Fmp.weixin.qq.com%2Fs%3F__biz%3DMzUxODYyMzgwMQ%3D%3D%26amp%3Bmid%3D2247485343%26amp%3Bidx%3D1%26amp%3Bsn%3D4a68716786e2b6bd7339856b7342dbe2%26amp%3Bchksm%3Df98740c9cef0c9dff7576c0257375355d72c7c1e5d3eeab11e63263e0f509c6d06876adf6563%26amp%3Btoken%3D70649880%26amp%3Blang%3Dzh_CN%23rd",
+          "scene": null
+        },
+        {
+          "name": "调研问题",
+          "pathName": "pages/diaoyanqes/diaoyanqes",
+          "query": "id=1&cop_id=2260&company_name=*ST德奥&timu=#产品/服务体验",
+          "scene": null
+        },
+        {
+          "name": "pages/zuhefenxi/zuhefenxi",
+          "pathName": "pages/zuhefenxi/zuhefenxi",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

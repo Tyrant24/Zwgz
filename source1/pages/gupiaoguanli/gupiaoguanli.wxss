@@ -1,0 +1,55 @@
+.search {
+  width: 608rpx;
+  height: 64rpx;
+  background: #F7F8FA;
+  opacity: 1;
+  border-radius: 294rpx;
+}
+.list {
+  width: 688rpx;
+  height: 144rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 8rpx 48rpx rgba(186, 192, 210, 0.12);
+  opacity: 1;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}
+.jiang{
+  width:10rpx;
+  height: 24rpx;
+  margin-left:12rpx;
+  margin-top:5rpx;
+}
+.di{
+  width: 750rpx;
+height: 168rpx;
+background: #FFFFFF;
+box-shadow: 0px -4rpx 60rpx rgba(1, 31, 63, 0.1);
+opacity: 1;
+position: fixed;
+bottom: 0;
+}
+.di .btn{
+  width: 688rpx;
+  height: 80rpx;
+  background: #DB2026;
+  opacity: 1;
+  border-radius: 40rpx;
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color:#FFFFFF;
+  text-align: center;
+  margin-left: 32rpx;
+  margin-top:12rpx;
+}
+.shanchu{
+  width: 128rpx;
+height: 52rpx;
+border: 2rpx solid #CCCCCC;
+opacity: 1;
+border-radius: 32rpx;
+font-size: 30rpx;
+line-height: 52rpx;
+text-align: center;
+color:#595959
+}

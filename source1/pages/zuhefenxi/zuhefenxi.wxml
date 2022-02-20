@@ -1,0 +1,224 @@
+<view class="padding-20">
+  <view style="color:#777777" class="h5">根据赔率和胜率每日更新</view>
+  <view wx:if="{{memberguzhilist.length>0}}" class="flex-row  margin-top-20">
+
+    <view  class="lefttable">
+      <view class="graybg"></view>
+      <view class="h-100 border">
+        <view class="padding-20 ">
+          <view class="h6">赔率</view>
+          <view class="h7">(你的估值/昨日市值)</view>
+        </view>
+      </view>
+      <view class="h-100 border">
+     
+      <view class="padding-20 border">
+        <view class="h6">胜率</view>
+        <view class="h7">(基本面的大数据分析)</view>
+      </view>
+    </view>
+
+    <view class="border h-75">
+      <view class="padding-20 border">
+        <view class="h6"> 组合参考仓位</view>
+
+      </view>
+    </view>
+
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">财务健康度</view>
+
+      </view>
+    </view>
+
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">经常性收益</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">持久经营能力</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">被证明的管理层</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">特许经营权</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">充沛的流动性</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">高ROIC</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">有利的竞争地位</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">低资本支出</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">适度分散的客户</view>
+
+      </view>
+    </view>
+    <view class="border h-75">
+      <view class="padding-20 ">
+        <view class="h6">强健的资产负债表</view>
+
+      </view>
+      </view>
+
+
+    </view>
+
+    <scroll-view scroll-x="{{true}}" style="white-space: nowrap;width:450rpx" class="flex-row flex-center">
+
+      <view wx:for="{{memberguzhilist}}" class="righttable">
+        <view class="h72 " style=" background: #CCCCCC;">
+          <view class="padding-10 h6">{{item.company_name}}</view>
+        </view>
+        <view class=" border h-100 flex-row flex-justify-center">
+
+          <view class="h6 text-center">{{item.guzhi.BB>0?item.guzhi.BB:'0'}}</view>
+
+        </view>
+        <view class=" border h-100 flex-row flex-justify-center">
+
+          <view class="h6 text-center">{{item.guzhi.P*1000/10}}%</view>
+
+        </view>
+
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <view class="h6 text-center">{{item.guzhi.F*1000/10==0?"0%":item.guzhi.F*1000/10}}</view>
+
+        </view>
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <view class="h6 text-center">{{item.combinatory.zongcheng}}</view>
+
+        </view>
+
+
+
+        <view class=" border h-75 flex-row flex-justify-center">
+          <image wx:if='{{item.combinatory["经常性收益"]=="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'>
+          </image>
+          <image wx:if='{{item.combinatory["经常性收益"]!="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'>
+          </image>
+        </view>
+
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["持久经营能力"]=="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'>
+          </image>
+          <image wx:if='{{item.combinatory["持久经营能力"]!="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+        </view>
+
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["被证明的管理层"]=="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.true1}}'></image>
+          <image wx:if='{{item.combinatory["被证明的管理层"]!="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+        </view>
+
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["特许经营权"]=="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'>
+          </image>
+          <image wx:if='{{item.combinatory["特许经营权"]!="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'>
+          </image>
+
+        </view>
+
+        <view class=" border h-75 flex-row flex-justify-center">
+
+
+          <image wx:if='{{item.combinatory["充沛的流动性"]=="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'>
+          </image>
+          <image wx:if='{{item.combinatory["充沛的流动性"]!="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+        </view>
+        <view class=" border h-75 flex-row flex-justify-center">
+          <image wx:if='{{item.combinatory["高ROIC"]=="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'>
+          </image>
+          <image wx:if='{{item.combinatory["高ROIC"]!="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'>
+          </image>
+
+
+        </view>
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["有利的竞争地位"]=="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.true1}}'></image>
+          <image wx:if='{{item.combinatory["有利的竞争地位"]!="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+        </view>
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["低资本支出"]=="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'>
+          </image>
+          <image wx:if='{{item.combinatory["低资本支出"]!="Y"}}' class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'>
+          </image>
+
+
+        </view>
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["适度分散的客户"]=="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.true1}}'></image>
+          <image wx:if='{{item.combinatory["适度分散的客户"]!="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+
+        </view>
+        <view class=" border h-75 flex-row flex-justify-center">
+
+          <image wx:if='{{item.combinatory["强健的资产负债表"]=="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.true1}}'></image>
+          <image wx:if='{{item.combinatory["强健的资产负债表"]!="Y"}}' class="icon-15"
+            src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+        </view>
+
+
+
+
+
+      </view>
+
+    </scroll-view>
+
+  </view>
+</view>

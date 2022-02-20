@@ -1,0 +1,70 @@
+<view class="padding-30">
+
+
+	<view wx:for="{{memberguzhilist}}" bindtap="xz" data-id="{{idx}}" wx:for-index="idx" class="list flex-row flex-center">
+		<view class="flex-row flex-2">
+			<image wx:if="{{bianji==true&&item.xz==false}}" class="icon-15 margin-left-10 margin-top-5" src='{{uploadpath}}resource/{{res.wxz}}'></image>
+			<image wx:if="{{bianji==true&&item.xz==true}}" class="icon-15 margin-left-10 margin-top-5" src='{{uploadpath}}resource/{{res.xz}}'></image>
+
+			<view class="margin-left-20 ">
+
+				<view class="h4-5 txt-bold" style="color:#161616">{{item.company_name}}</view>
+				<view class="h7 margin-top-10" style="color:#A0A0A0">当前价{{item.company_danqianjia}}</view>
+			</view>
+		</view>
+		<view class="flex-6 flex-row flex-center">
+
+		
+
+			<view class="flex-1  flex-row flex-center">
+				<view class="flex-1"></view>
+				<view>
+					<view class="flex-row flex-center">
+						<view class="h4-5 txt-bold" style="color:{{item.guzhi.BB<item.guzhi.shangyiciBB?'#00AB72':'#FF545D'}}">{{item.guzhi.BB>0?item.guzhi.BB:'0'}}</view>
+						<!-- <image wx:if="{{item.guzhi.BB<item.guzhi.shangyiciBB}}" class="jiang" src='{{uploadpath}}resource/{{res.jiang}}'></image>
+						<image wx:else class="jiang" src='{{uploadpath}}resource/{{res.sheng}}'></image> -->
+					</view>
+					<view class="h7 margin-top-10" style="color:#A0A0A0">赔率</view>
+				</view>
+				<view class="flex-1"></view>
+			</view>
+
+			<view class="flex-1  flex-row flex-center">
+				<view class="flex-1"></view>
+				<view>
+					<view class="flex-row flex-bottom">
+						<view class="h4-5 txt-bold" style="color:{{item.guzhi.P<item.guzhi.shangyiciP?'#00AB72':'#FF545D'}}">{{item.guzhi.P*1000/10}}{{}}</view>
+						<view class="h7" style="color:{{item.guzhi.P<item.guzhi.shangyiciP?'#00AB72':'#FF545D'}}">%</view>
+						<!-- <image wx:if="{{item.guzhi.P<item.guzhi.shangyiciP}}" class="jiang" src='{{uploadpath}}resource/{{res.jiang}}'></image>
+						<image wx:else class="jiang" src='{{uploadpath}}resource/{{res.sheng}}'></image> -->
+					</view>
+					<view class="h7 margin-top-10" style="color:#A0A0A0">胜率</view>
+				</view>
+				<view class="flex-1"></view>
+			</view>
+			<view class="flex-1 flex-row flex-column">
+				<view class="flex-row flex-bottom">
+					<view class="{{item.guzhi.F*1000/10==0?'h5':'h4-5'}} h4-5 txt-bold" style="color:#161616">{{item.guzhi.F*1000/10==0?"不推荐":item.guzhi.F*1000/10}}</view>
+					<view wx:if="{{item.guzhi.F*1000/10!=0}}" class="h7" style="color:#161616">%</view>
+				</view>
+				<view class="h7 margin-top-10" style="color:#A0A0A0">参考仓位</view>
+			</view>
+		</view>
+
+
+	</view>
+</view>
+
+<view class="di">
+
+	<view wx:if="{{bianji==false}}" bindtap="bianji" class="btn">编辑</view>
+	<view wx:if="{{bianji==true}}" class="flex-row flex-center margin-left-30 margin-top-20">
+		<image wx:if="{{quanxuan==false}}" bindtap="quanxuan" class="icon-15 margin-top-5" src='{{uploadpath}}resource/{{res.wxz}}'></image>
+		<image wx:if="{{quanxuan==true}}" bindtap="quanxuan" class="icon-15 margin-top-5" src='{{uploadpath}}resource/{{res.xz}}'></image>
+		<view class="margin-left-10">全选</view>
+		<view class="flex-1"></view>
+		<view bindtap="wanchen" class="shanchu margin-right-20">完成</view>
+		<view bindtap="shanchu" class="shanchu margin-right-40">删除</view>
+
+	</view>
+</view>

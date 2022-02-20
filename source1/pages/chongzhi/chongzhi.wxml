@@ -1,0 +1,47 @@
+<view class="padding-16 bg-white">
+  <view class="flex-row flex-center ">
+    <image src="{{memberinfo.avatarUrl}}" class="touxiang radius-50"></image>
+    <view style="color:#333333;">Hi，{{memberinfo.nickName}}</view>
+  </view>
+
+  <view class=" flex-row flex-wrap">
+    <view wx:for="{{vouchercenter}}" wx:key='k' wx:for-index="idx" bindtap="switchnav" id='{{idx}}'
+      class="flex-row flex-column vouch bg-white {{seq==idx?'border-ff':''}}" style="position:relative;s">
+      <view class="chaozhi" wx:if='{{item.tuijian_value=="Y"}}'>超值推荐</view>
+      <view class="h5" style="color:#151515;">{{item.name}}</view>
+      <view class="margin-top-20 txt-bold f-27" style="color:#F55E5F;"><text class=""
+          style="color:#F55E5F;">￥</text>{{item.money}}</view>
+      <view class="margin-top-20 h7" style="color:#9B9B9B;text-decoration:line-through;">原价：{{item.yuanjia}}</view>
+    </view>
+  </view>
+
+  <view class=" flex-row flex-center">
+    <image src="{{uploadpath}}resource/{{ischeck?res.tongyi:res.butongyi}}" class="ty_img" bindtap="tongyi"></image>
+    <view class="h6 margin-left-10" style="color:#4A4A4A;" bindtap="tongyi">同意</view>
+    <view class="h6" style="color:#F55E5F;" bindtap="xieyi">《众问估值服务协议》</view>
+  </view>
+</view>
+
+<view class="margin-top bg-white padding-12 ">
+  <view class="f-34" style="color:#333333;">众问<text class="f-34" style="color:#F55E5F;">VIP</text>权益</view>
+
+  <view class="flex-row flex-center quyi " wx:for="{{quanyilist}}" wx:key='k'>
+    <image src="{{uploadpath}}quanyi/{{item.img}}" class="qy_img"></image>
+    <view class="flex-1 f-30" style="color:#333333;">{{item.name}}</view>
+  </view>
+</view>
+
+<view class="height-120"></view>
+
+<view class="bg-white posibot">
+
+  <view class="fuzhu h5" bindtap="fuzhi" wx:if="{{platform=='ios'}}">
+    点击复制添加小众微信咨询
+  </view>
+  <view class="flex-row flex-center " wx:else>
+    <view class="h3" style="color:#333333;"><text class="h5" style="color:#333333;">支付:￥</text>{{money}}<text class="h5"
+        style="color:#333333;">.00</text></view>
+    <view class="flex-1"></view>
+    <view class="fuk" bindtap="bindpay">去付款</view>
+  </view>
+</view>

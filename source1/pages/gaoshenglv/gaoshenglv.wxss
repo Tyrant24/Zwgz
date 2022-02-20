@@ -1,0 +1,50 @@
+.Top {
+  background-color: #2699EC;
+}
+
+.search {
+  width: 688rpx;
+  height: 64rpx;
+  background: #F7F8FA;
+  opacity: 1;
+  border-radius: 294rpx;
+}
+
+.bolck {
+  width: 336rpx;
+  height: 144rpx;
+  background: #EAE5FB;
+  opacity: 1;
+  border-radius: 8rpx;
+}
+
+.bolck1 {
+  width: 336rpx;
+  height: 144rpx;
+  background: #FFFADB;
+  opacity: 1;
+  border-radius: 8rpx;
+}
+
+.quan {
+  position: absolute;
+  width: 32rpx;
+  height: 32rpx;
+  margin-top: -15rpx;
+}
+
+.list {
+  width: 688rpx;
+  height: 144rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 8rpx 48rpx rgba(186, 192, 210, 0.12);
+  opacity: 1;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}
+.jiang{
+  width:10rpx;
+  height: 24rpx;
+  margin-left:12rpx;
+  margin-top:5rpx;
+}

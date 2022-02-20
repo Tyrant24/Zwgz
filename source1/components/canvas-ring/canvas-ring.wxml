@@ -1,0 +1,14 @@
+<view class="circle-bar">
+	<view class="circle-bar-left" style="{{value<=50?'':'transform:rotate(' + ((value - 50) * 3.6) + 'deg);'}}"></view>
+	<view class="circle-bar-right" style="{{value<=50?'transform:rotate(' + (value * 3.6) + 'deg)':'transform:rotate(0deg);background:#FBCD1E'}}"></view>
+	<!--遮罩层，显示百分比-->
+	<view class="mask">
+		<view style="FBCD1E" class="percent">
+			<view style="padding-top:30rpx">{{value}}{{suffix}}</view>
+			<view style="font-size:16rpx;color:#595959;padding-top:60rpx">
+				{{title}}
+			</view>
+		</view>
+
+	</view>
+</view>

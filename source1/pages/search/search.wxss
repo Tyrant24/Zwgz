@@ -1,0 +1,16 @@
+.search {
+  width: 688rpx;
+  height: 64rpx;
+  background: #F7F8FA;
+  opacity: 1;
+  border-radius: 294rpx;
+}
+.list {
+  width: 688rpx;
+  height: 144rpx;
+  background: #FFFFFF;
+  box-shadow: 0px 8rpx 48rpx rgba(186, 192, 210, 0.12);
+  opacity: 1;
+  border-radius: 8rpx;
+  margin-top: 20rpx;
+}

@@ -1,0 +1,1031 @@
+<view class='cu-custom'>
+	<view class="cu-bar fixed " style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+		<navigator class='action' bindtap="backHome" open-type="navigateBack" delta="1" hover-class="none">
+			<text class='cuIcon-back' style="color:white"></text>
+		</navigator>
+		<view class='content' style='top:{{StatusBar}}px;color:white'>{{companyinfo.name}}</view>
+	</view>
+</view>
+<view class="top">
+
+	<view style="height:{{CustomBar}}px"></view>
+	<view class="flex-row flex-center margin-top-20">
+		<view class="flex-1"></view>
+		<view class="select flex-row flex-center">
+
+			<view bindtap="select" data-id="0" class=" flex-1   {{select==0?'checked':'nochecked'}}">计算估值</view>
+			<view bindtap="select" data-id="1" class=" flex-1  {{select==1?'checked':'nochecked'}}">我的评分</view>
+			<view bindtap="select" data-id="2" class=" flex-1  {{select==2?'checked':'nochecked'}}">定性讨论</view>
+		</view>
+		<view class="flex-1"></view>
+	</view>
+	<view wx:if="{{select==0}}" class="flex-row flex-column">
+
+		<view class="h6 margin-top " style="color:#FFFFFF;opacity: 0.8;">我的估值(亿元)</view>
+		<view class="f-80 text-bold margin-top" style="color:#FFFFFF">{{companyinfo.guzhi.V}}</view>
+	</view>
+	<view wx:if="{{select==1}}" class="flex-row flex-column">
+
+		<view class="h6 margin-top " style="color:#FFFFFF;opacity: 0.8;">我的评分</view>
+		<view class="flex-row flex-bottom">
+			<view class="f-80 text-bold margin-top" style="color:#FFFFFF">{{companyinfo.guzhi.P*1000/10}}</view>
+
+			<view wx:if="{{companyinfo.guzhi.P>companyinfo.guzhi.shangyiciP}}" class="ccc flex-row ">
+				<!-- <image class="wsheng margin-left-10" src='{{uploadpath}}resource/{{res.wsheng}}'></image>
+				<view class="h4-5 text-bold" style="color:#FFFFFF">+{{companyinfo.guzhi.P*1000/10-companyinfo.guzhi.shangyiciP*1000/10}}%</view> -->
+			</view>
+
+			<view wx:if="{{companyinfo.guzhi.P<companyinfo.guzhi.shangyiciP}}" class="ccc flex-row ">
+				<!-- <image class="wsheng margin-left-10" src='{{uploadpath}}resource/{{res.wjiang}}'></image>
+				<view class="h4-5 text-bold" style="color:#FFFFFF">{{companyinfo.guzhi.P*1000/10-companyinfo.guzhi.shangyiciP*1000/10}}%</view> -->
+			</view>
+		</view>
+	</view>
+	<view class="flex-row flex-center margin-top">
+
+		<view class="flex-row flex-column flex-1">
+			<view class="h6 " style="color:#FFFFFF;opacity: 0.8;">参考仓位</view>
+			<view class="f-3 text-bold margin-top-20" style="color:#FFFFFF">
+				{{companyinfo.guzhi.F*1000/10==0?"不推荐":companyinfo.guzhi.F*1000/10+'%'}}</view>
+		</view>
+		<view class="flex-row flex-column flex-1">
+			<view class="h6 " style="color:#FFFFFF;opacity: 0.8;"> 目标价</view>
+			<view class="f-3 text-bold margin-top-20" style="color:#FFFFFF">{{companyinfo.mubiaojia}}</view>
+		</view>
+
+		<view wx:if="{{select==1}}" class="flex-row flex-column flex-1">
+			<view class="h6 " style="color:#FFFFFF;opacity: 0.8;">我的估值(亿元)</view>
+			<view class="f-3 text-bold margin-top-20" style="color:#FFFFFF">{{companyinfo.guzhi.V}}</view>
+		</view>
+
+		<view wx:if="{{select==0}}" class="flex-row flex-column flex-1">
+			<view class="h6 " style="color:#FFFFFF;opacity: 0.8;">评分</view>
+			<view class="f-3 text-bold margin-top-20" style="color:#FFFFFF">{{companyinfo.guzhi.P*1000/10}}</view>
+		</view>
+
+
+	</view>
+
+
+
+</view>
+<!-- 估值图表 -->
+<view wx:if="{{select==0}}" class="qqq margin-top-20 " style="margin-left">
+	<view class="konzhi">
+		<view style="width:160rpx;height:45rpx" class="flex-row flex-center">
+			<view bindtap="konzhi" class="{{type=='ri'?'ri':'yue'}} h6 flex-1" data-id="ri">日</view>
+			<view style="height:45rpx;width:1rpx;background:#ffffff;"></view>
+			<view bindtap="konzhi" class="{{type=='yue'?'ri':'yue'}} h6 flex-1" data-id="yue">月</view>
+		</view>
+
+	</view>
+	<ec-canvas wx:if="{{ec!=undefined}}" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+
+</view>
+<!-- 胜率图表 -->
+<view wx:if="{{select==1}}" class="qqq margin-top-20 " style="margin-left">
+
+	<view class="konzhi">
+		<view style="width:160rpx;height:45rpx" class="flex-row flex-center">
+			<view bindtap="konzhi1" class="{{type1=='ri'?'ri':'yue'}} h6 flex-1" data-id="ri">日</view>
+			<view style="height:45rpx;width:1rpx;background:#ffffff;"></view>
+			<view bindtap="konzhi1" class="{{type1=='yue'?'ri':'yue'}} h6	 flex-1" data-id="yue">月</view>
+		</view>
+
+	</view>
+	<ec-canvas wx:if="{{ec2!=undefined}}" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec2 }}"></ec-canvas>
+
+</view>
+<view wx:if="{{select==0}}" class="qqq1  padding-20 ">
+
+	<view class="flex-row flex-center ">
+		<view>
+			<view class="flex-row flex-center">
+				<view class="h5 txt-bold" style="color:#161616">当前投资假设</view>
+				<view class="h6 margin-left-20" style="color:#A0A0A0">{{companyinfo.guzhi.updated_date}} 更新</view>
+			</view>
+			<view class="h6 margin-top-10" style="color:#595959">盈利预测:五年后自由现金流达到{{companyinfo.guzhi.xianjin}}亿人民币</view>
+			<view class="h6 margin-top-5 " style="color:#595959">计算估值的折现率：{{companyinfo.guzhi.r*1000/10}}%</view>
+			<!-- <view class="h6" style="color:#595959">估值的确定性：39%</view> -->
+
+
+		</view>
+		<view class="flex-1"></view>
+		<view bindtap="tiaozhen" class="tiaozhen flex-row flex-center">
+			<view class="flex-1"></view>
+			<view class="text"> 我要估值</view>
+			<view class="flex-1"></view>
+		</view>
+	</view>
+	<view class="flex-row flex-center margin-top-5">
+		<view class="h6" style="color:#595959">估值的确定性:{{companyinfo.guzhi.P*1000/10}}%</view>
+		<view class="flex-1"></view>
+		<text wx:if="{{a!=''}}" class="h6" style="color:#595959">距离下次调整</text>
+		<text wx:if="{{a!=''}}" class="h6" style="color:#DB2026;margin-left:5rpx;margin-top:3rpx">{{a}}</text>
+	</view>
+
+</view>
+<view wx:if="{{select==0}}" class="padding-20  text-center h8" style="color:#A0A0A0">
+	以下为构成估值的财务数据，除了经营资产为您的预测值外，其余科⽬均来⾃公司最新年报。
+</view>
+<!-- 券商一致性预期目标价 -->
+<view wx:if="{{select==0&&targetlist.length!=0&&instinfo.target_value=='Y'}}"
+	class="padding-30 qqq1 margin-top-20 margin-bottom-20 ">
+	<view class="flex-row  flex-center" bindtap="shouqi" id="1">
+		<view>
+			<view class="txt-1 h5 txt-bold">券商一致性预期目标价</view>
+			<view class="txt-3 f-22 padding-top-10">每周更新，当前更新日期 {{targetlist[tarlength].riqi_dateformat}}</view>
+		</view>
+		<view class="flex-1"></view>
+		<view class="txt-1  txt-bold h5">{{targetlist[tarlength].price}}元</view>
+		<image class="topicon margin-left-10" wx:if="{{biao}}" src='{{uploadpath}}resource/{{res.topicon}}'></image>
+		<image class="topicon margin-left-10" wx:if="{{!biao}}" src='{{uploadpath}}resource/{{res.bottomicon}}'></image>
+	</view>
+
+	<view class="margin-top-20 bg-1 radius-16 padding-20" wx:if="{{!biao}}">
+		<view class="flex-row flex-center">
+			<view class="flex-1 txt-1 h6 flex-none">年份</view>
+			<view class="flex-1 txt-1 h6  flex-none">营业收入(亿)</view>
+			<view class="flex-1 txt-1 h6   flex-none">净利润(亿)</view>
+			<view class=" txt-1 h6  flex-none w-100">毛利率</view>
+		</view>
+
+		<view class="flex-row margin-top-20 flex-center" wx:for="{{targetlist}}" :key="k">
+			<view class="flex-1 txt-3 h6 flex-none">{{item.year}}</view>
+			<view class="flex-1 txt-3 h6 flex-none">{{item.income}}</view>
+			<view class="flex-1 txt-3 h6  flex-none">{{item.netprofit}}</view>
+			<view class=" txt-3 h6 flex-none  w-100">{{item.grossprofit*100}}%</view>
+		</view>
+
+
+	</view>
+	<view class="border margin-top-20"></view>
+
+</view>
+
+<view wx:if="{{select==0}}" class="padding-20  qqq1 ">
+	<view bindtap="kuai1" class="flex-row  flex-center padding-20">
+		<view class="h5" style="color:#161616"> <text class="txt-bold txt-1 h5">经营资产</text> （预估）</view>
+		<view class="flex-1"></view>
+		<view class="h5" style="color:#161616">{{companyinfo.guzhi.S}}亿</view>
+		<image class="topicon margin-left-10" wx:if="{{!kuai1}}" src='{{uploadpath}}resource/{{res.topicon}}'></image>
+		<image class="topicon margin-left-10" wx:if="{{kuai1}}" src='{{uploadpath}}resource/{{res.bottomicon}}'></image>
+	</view>
+	<view wx:if="{{kuai1==true}}" class="   padding-20" style="border-radius: 16rpx;background: #F7F8FA;">
+		<!-- <view class="flex-1">
+			<view class="h6 margin-top-5">资产类型</view>
+			<view class="h6 margin-top-5">经营活动产生的净现金流</view>
+			<view class="h6 margin-top-5">固定资产折旧</view>
+			<view class="h6 margin-top-5">无形资产摊销</view>
+			<view class="h6 margin-top-5">长期资产处置损失</view>
+			<view class="h6 margin-top-5">经营资产自由净现金流</view>
+		</view>
+		<view class="flex-1 flex-row flex-center">
+			<view class="flex-1 flex-row flex-column">
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+
+			</view>
+			<view class="flex-1 flex-row flex-column">
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+
+			</view>
+			<view class="flex-1 flex-row flex-column">
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+				<view class="h6 margin-top-5">2019</view>
+
+			</view>
+
+		</view> -->
+		<view class="qqq2">
+			<ec-canvas wx:if="{{ec1!=undefined}}" id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec1 }}"></ec-canvas>
+		</view>
+		<view class="flex-row flex-center">
+
+			<view class="flex-1 h5-6" style="color:#161616"> <text class="h5-6 txt-1 txt-bold">资产类型</text> 单位：百万人民币 </view>
+			<view class=" " style="margin-left">
+
+			</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata.nian}}年</view>
+
+			</view>
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class="flex-1 h6">经营活动产生的净现金流</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata['活动产生之现金流量净额']}}</view>
+
+			</view>
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class="flex-1 h6">固定资产折旧</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata['固定资产折旧']}}</view>
+
+			</view>
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class="flex-1 h6">无形资产摊销</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata['无形资产摊销']}}</view>
+
+			</view>
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class="flex-1 h6">长期待摊费用摊销</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata['长期待摊费用摊销']}}</view>
+
+			</view>
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class="flex-1 h6">长期资产处置损失</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata['处置固定无形和其它长期资产的损']}}</view>
+
+			</view>
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class="flex-1 h6">经营资产自由净现金流</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata['经营活动自由现金流量净额']}}</view>
+
+			</view>
+		</view>
+	</view>
+	<view bindtap="kuai2" class="flex-row margin-top-20   padding-20 border flex-center">
+		<view class="h5 txt-bold" style="color:#161616">金融资产</view>
+		<view class="flex-1"></view>
+		<view class="h5" style="color:#161616">{{companyinfo.companydata['金融资产合计']}}亿</view>
+		<image class="topicon margin-left-10" wx:if="{{!kuai2}}" src='{{uploadpath}}resource/{{res.topicon}}'></image>
+		<image class="topicon margin-left-10" wx:if="{{kuai2}}" src='{{uploadpath}}resource/{{res.bottomicon}}'></image>
+	</view>
+	<view wx:if="{{kuai2==true}}" class="  padding-20" style="border-radius: 16rpx;background: #F7F8FA;">
+		<view class="flex-row flex-center">
+
+			<view class="flex-1 h5-6" style="color:#161616">资产类型 单位：百万人民币 </view>
+			<view class=" " style="margin-left">
+
+			</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata.nian}}年</view>
+
+			</view>
+		</view>
+		<view class="flex-row flex-center margin-top-5">
+
+			<view class=" h6" style="color:#777777">货币资金</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['货币资金']}}</view>
+
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777"> 交易性金融资产</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['交易性金融资产']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">持有待售的资产</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['划分为持有待售的负债']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">⼀年内到期的⾮流动资产</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['一年内到期的非流动资产']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">发放贷款和垫资</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['发放贷款及垫款']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">可供出售的⾦融资产</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['可供出售金融资产']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">持有到期的投资</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['持有至到期投资']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">投资性房地产</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['投资性房地产']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">应收股利</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['应收股利']}}</view>
+
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">应收利息</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['应收利息']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">买⼊返售⾦融资产</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['买入返售金融资产']}}</view>
+
+		</view>
+
+	</view>
+	<view bindtap="kuai3" class="flex-row margin-top-20 padding-20  border flex-center">
+		<view class="h5 txt-bold" style="color:#161616">股权投资</view>
+		<view class="flex-1"></view>
+		<view class="h5" style="color:#161616">{{companyinfo.companydata['长期股权投资合计']}}亿</view>
+		<image class="topicon margin-left-10" wx:if="{{!kuai3}}" src='{{uploadpath}}resource/{{res.topicon}}'></image>
+		<image class="topicon margin-left-10" wx:if="{{kuai3}}" src='{{uploadpath}}resource/{{res.bottomicon}}'></image>
+	</view>
+	<view wx:if="{{kuai3==true}}" class="   padding-20" style="border-radius: 16rpx;background: #F7F8FA;">
+
+		<view class="flex-row flex-center">
+
+			<view class="flex-1 h5-6" style="color:#161616">资产类型 单位：百万人民币 </view>
+			<view class=" " style="margin-left">
+
+			</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata.nian}}年</view>
+
+			</view>
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">长期股权投资</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['长期股权投资']}}</view>
+
+		</view>
+
+	</view>
+
+	<view bindtap="kuai4" class="flex-row margin-top-20 padding-20 border  flex-center">
+		<view class="h5 txt-bold" style="color:#161616">带息负债</view>
+		<view class="flex-1"></view>
+		<view class="h5" style="color:#161616">{{companyinfo.companydata['带息负债合计']}}亿</view>
+		<image class="topicon margin-left-10" wx:if="{{!kuai4}}" src='{{uploadpath}}resource/{{res.topicon}}'></image>
+		<image class="topicon margin-left-10" wx:if="{{kuai4}}" src='{{uploadpath}}resource/{{res.bottomicon}}'></image>
+	</view>
+	<view wx:if="{{kuai4==true}}" class="    padding-20" style="border-radius: 16rpx;background: #F7F8FA;">
+
+		<view class="flex-row flex-center">
+
+			<view class="flex-1 h5-6" style="color:#161616">资产类型 单位：百万人民币 </view>
+			<view class=" " style="margin-left">
+
+			</view>
+			<view class=" flex-row ">
+				<view class="flex-1 text-center h6 margin-right-20">{{companyinfo.companydata.nian}}年</view>
+
+			</view>
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">短期借款</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['短期借款']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">应付利息</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['应付利息']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">以公允价值计量且其变动计入当期损益的金融负债</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['以公允价值计量且其变动计入当期损益的金融负债']}}
+			</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">交易性金融负债</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['交易性金融负债']}}</view>
+
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">划分为持有待售的负债</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['划分为持有待售的负债']}}</view>
+
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">一年内到期的非流动负债</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['一年内到期的非流动负债']}}</view>
+
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">长期借款</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['长期借款']}}</view>
+
+		</view>
+
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">应付债券</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['应付债券']}}</view>
+
+		</view>
+		<view class="flex-row margin-top-5 flex-center">
+
+			<view class=" h6" style="color:#777777">长期应付款</view>
+			<view class="flex-1"></view>
+			<view class=" h6 margin-right-20" style="color:#777777">{{companyinfo.companydata['长期应付款']}}</view>
+
+		</view>
+	</view>
+	<view class="flex-row margin-top-20 padding-20  flex-center border">
+		<view class="h5 txt-bold" style="color:#161616">合计</view>
+		<view class="flex-1"></view>
+		<view class="h5" style="color:#161616">{{companyinfo.guzhi.V}}亿</view>
+
+	</view>
+</view>
+
+<!-- 东阿阿胶财务健康程度检查： -->
+<view wx:if="{{select==1&&healthlist.length!=0&&instinfo.switch_value=='Y'}}"
+	class="padding-30 qqq1 border margin-top-20 margin-bottom-20">
+
+	<view class="flex-row flex-center">
+		<view class="h5 txt-bold">
+			众问基本面核查表
+		</view>
+		<view class="flex-1"></view>
+		<view class="h5 ">
+			{{companyinfo.riskpoint.update_time}} 更新
+		</view>
+	</view>
+	<view class="margin-top-20 radius-16">
+		<view class="flex-row flex-center h-64 bg-1 padding-20">
+			<view class="flex-2 txt-1 h6 flex-none">核查科目</view>
+			<view class="flex-3 txt-1 h6  flex-none text-center ">核查细则与指标</view>
+			<view class=" flex-2 txt-1 h6 text-right flex-none w-200">核查结果</view>
+		</view>
+		<view class="flex-row ">
+
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">持久经营能力</view>
+			</view>
+			<view class="flex-5">
+
+				<view class="flex-row " style="justify-content:space-between">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">过去3年经常性损益 波动率小于30%</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['过去3年经常性损益波动率少于30']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['过去3年经常性损益波动率少于30']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+					</view>
+				</view>
+
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">没有外聘ceo</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['没有外聘ceo']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['没有外聘ceo']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">经营所需要的资质在保护期内</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['经营所需要的资质在保护期内']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['经营所需要的资质在保护期内']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">不存在对大客户过分依赖</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['不存在对大客户过分依赖']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['不存在对大客户过分依赖']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">不存在对上游供应商过分依赖</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['不存在对上游供应商过分依赖']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['不存在对上游供应商过分依赖']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">建设有独立的营销渠道</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+						<image  wx:if="{{companyinfo.riskpoint['建设有独立的营销渠道']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['建设有独立的营销渠道']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">过去5年净现比有3次及以上大于1</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['过去5年净现比有3次及以上大于1']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['过去5年净现比有3次及以上大于1']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">没有被会计师出具过否定性或保留性意见</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['没有被会计师出具过否定性或保留性意见']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['没有被会计师出具过否定性或保留性意见']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">研发投入与主营业务收入占比基本稳定</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['研发投入与主营业务收入占比基本稳定']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['研发投入与主营业务收入占比基本稳定']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">过去3年没有出现重大诉讼</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['过去3年没有出现重大诉讼']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['过去3年没有出现重大诉讼']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+			</view>
+
+
+		</view>
+
+		<view class="flex-row ">
+
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">合格的管理层</view>
+			</view>
+			<view class="flex-5">
+
+
+
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">公开宣传市值目标</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['公开宣传市值目标']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['公开宣传市值目标']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">任期内盲目多元化</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['任期内盲目多元化']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['任期内盲目多元化']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">任期内营收规模增速远大于净利润增速</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+			
+						<image  wx:if="{{companyinfo.riskpoint['任期内营收规模增速远大于净利润增速']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['任期内营收规模增速远大于净利润增速']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+
+					</view>
+				</view>
+
+
+
+
+			</view>
+
+
+		</view>
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">特许经营权</view>
+			</view>
+			<view class="flex-5">
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">是否有特许经营权</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['是否有特许经营权']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['是否有特许经营权']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+					</view>
+				</view>
+
+
+
+
+
+			</view>
+
+
+		</view>
+
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">充沛的流动性</view>
+			</view>
+			<view class="flex-5">
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">企业财务上流动性是否充足</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['企业财务上流动性是否充足']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['企业财务上流动性是否充足']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+
+
+
+			</view>
+
+
+		</view>
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">高ROIC</view>
+			</view>
+			<view class="flex-5">
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">长期ROIC均值是否高于15%</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['长期ROIC均值是否高于15']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['长期ROIC均值是否高于15']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+
+
+
+			</view>
+
+
+		</view>
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">有利的竞争地位</view>
+			</view>
+			<view class="flex-5">
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">用HHI衡量的行业竞争强度指数</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['用HHI衡量的行业竞争强度指数']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['用HHI衡量的行业竞争强度指数']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">用comp衡量的企业竞争地位指数</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['用comp衡量的企业竞争地位指数']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['用comp衡量的企业竞争地位指数']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+
+			</view>
+
+
+		</view>
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">低资本支出</view>
+			</view>
+			<view class="flex-5">
+	
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">(存货+固定资产)/总资产小于30%</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['存货固定资产总资产小于30']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['存货固定资产总资产小于30']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+
+			</view>
+
+
+		</view>
+
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">适度分散的 客户</view>
+			</view>
+			<view class="flex-5">
+	
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">前五名客户合计销售金额占年度销售总额比例小于30%</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['前五名客户合计销售金额占年度销售总额比例小于30']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['前五名客户合计销售金额占年度销售总额比例小于30']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+
+			</view>
+
+
+		</view>
+		<view class="flex-row ">
+			<view class="flex-2">
+				<view class="flex-row flex-justify-center border-3 h6" style="height:100%">强健的资产负债表</view>
+			</view>
+			<view class="flex-5">
+	
+
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">流动资产是流动负债的2倍</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['流动资产是流动负债的2倍']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['流动资产是流动负债的2倍']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">长期资产是长期负债的1.5倍</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['长期资产是长期负债的1.5倍']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['长期资产是长期负债的1.5倍']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+				<view class="flex-row ">
+					<view class="flex-row flex-3 flex-justify-center border-2 h6">资产负债率小于60%</view>
+
+					<view class="flex-row flex-2 flex-justify-center border-2 h6" style="height:auto;">
+
+						<image  wx:if="{{companyinfo.riskpoint['资产负债率小于60']=='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.true1}}'></image>
+						<image wx:if="{{companyinfo.riskpoint['资产负债率小于60']!='Y'}}" class="icon-15" src='{{uploadpath}}resource/{{res.false1}}'></image>
+
+					</view>
+				</view>
+
+
+			</view>
+
+
+		</view>
+	</view>
+
+
+	<view class="flex-row  flex-center margin-top-20 " bindtap="shouqi" id="2">
+		<!-- <view> -->
+		<!-- 东阿阿胶财务健康程度检查： -->
+		<view class="txt-1 h5 txt-bold ">{{companyinfo.name}}健康程度检查：<text
+				class="txt-4 h5 txt-bold">{{healthlist[healthlong].zongcheng}}</text></view>
+		<!-- <view class="txt-3 f-22 padding-top-10">每周更新，当前更新日期 {{healthlist[tarlength].riqi_dateformat}}</view>
+		</view>
+		<view class="flex-1"></view>
+		<view class="txt-1  txt-bold h5">{{healthlist[tarlength].price}}元</view>
+		<image class="topicon margin-left-10" wx:if="{{health}}" src='{{uploadpath}}resource/{{res.topicon}}'></image>
+		<image class="topicon margin-left-10" wx:if="{{!health}}" src='{{uploadpath}}resource/{{res.bottomicon}}'></image> -->
+	</view>
+
+	<view class="margin-top-20  radius-16   ">
+		<view class="flex-row flex-center h-64 bg-1 padding-20">
+			<view class="flex-2 txt-1 h6 flex-none">检查科目描述</view>
+			<view class="flex-1 txt-1 h6  flex-none text-center ">上年度数据</view>
+
+			<view class=" txt-1 h6 text-right flex-none w-200">健康程度</view>
+		</view>
+
+		<view class="flex-row flex-center white-block border-3 padding-20" wx:for="{{healthlist}}" :key="k">
+			<view class="flex-2  h6 flex-none txt-5">{{item.miaoshu}}</view>
+			<view class="flex-1 txt-3 h6 flex-none text-center txt-5">{{item.shuju}}</view>
+			<view class="txt-3 h6 text-center flex-none w-200 txt-5 ">{{item.chegndu}}</view>
+		</view>
+
+		<view class="padding-top-20 flex-row flex-center">
+			<view class="txt-3 h6  ">申万行业分类：</view>
+			<view class="txt-1 h6 ">{{healthlist[healthlong].feilei}}</view>
+		</view>
+
+
+
+	</view>
+
+</view>
+
+<view wx:if="{{select==1}}" class="qqq1 padding-20">
+
+	<view class="flex-row flex-center">
+		<view class="h5 txt-bold">
+			需要严肃对待的风险点
+		</view>
+		<view class="flex-1"></view>
+		<view class="h5 ">
+			{{companyinfo.fenxiandian[0].update_time}}更新
+		</view>
+	</view>
+
+	<view wx:for="{{companyinfo.fenxiandian}}" class="flex-row margin-top-20">
+
+		<view class="blackd"></view>
+		<view class="h6 margin-left-10" style="width:554rpx">{{item.content}}</view>
+
+	</view>
+
+</view>
+
+<view wx:if="{{select==1}}" class="qqq1   padding-20 ">
+	<view class="h5 txt-bold " style="color:#161616">当前投资假设</view>
+	<view class="h6 margin-top-20 txt-bold" style="color:#DB2026">
+		{{companyinfo.name}}五年净现⾦流达到{{companyinfo.guzhi.xianjin}}亿</view>
+	<view class="h6 " style="color:#777777">管理团队打分：{{companyinfo.guzhi.b*1000/10}}
+	</view>
+	<view class="h6" style="color:#777777">商业模式打分：{{companyinfo.guzhi.a*1000/10}}
+	</view>
+	<view class="h6" style="color:#777777">市场空间打分：{{companyinfo.guzhi.c*1000/10}}
+	</view>
+</view>
+<view wx:if="{{select==1&&instinfo.kaiguan_value=='Y'}}" class="qqq1 padding-20">
+	<view class="flex-row flex-center">
+		<view class="h5 txt-bold" style="color:#161616">公司重要资讯</view>
+		<view class="flex-1"></view>
+		<view bindtap="genduo" class="h6" style="color:#A0A0A0">查看更多</view>
+		<image class="right" src='{{uploadpath}}resource/{{res.right}}'></image>
+	</view>
+	<view wx:if="{{companyinfo.zixun.length>0}}">
+		<view class="margin-top-20 h5" style="color:#333333;line-height: 52rpx;">{{companyinfo.zixun[0].content}}</view>
+		<view class="h6 margin-top-20" style="color:#A0A0A0">{{companyinfo.zixun[0].createTime}}</view>
+		<view class="timu">
+
+			<view wx:if="{{companyinfo.zixun[0].type=='A'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">
+				如果公司商业模式好，出现这个讯息的可能性多大?</view>
+			<view wx:if="{{companyinfo.zixun[0].type=='B'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">
+				如果公司市场空间大，出现这个讯息的可能性多大?</view>
+			<view wx:if="{{companyinfo.zixun[0].type=='C'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">
+				如果公司管理团队优秀，出现这个讯息的可能性多大?</view>
+
+
+			<view class="flex-row flex-center margin-top-30">
+
+
+				<view bindtap="daan1" data-id="1" class="{{daan1==1?'xz1':'xz'}}    flex-1">肯定</view>
+				<view bindtap="daan1" data-id="2" class="{{daan1==2?'xz1':'xz'}}  margin-left-40 flex-1">很可能</view>
+				<view bindtap="daan1" data-id="3" class="{{daan1==3?'xz1':'xz'}}  margin-left-40 flex-1">不确定</view>
+				<view bindtap="daan1" data-id="4" class="{{daan1==4?'xz1':'xz'}}  margin-left-40 flex-1">不太可能</view>
+			</view>
+
+		</view>
+		<view class="timu">
+			<view wx:if="{{companyinfo.zixun[0].type=='A'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">
+				如果公司商业模式不好，出现这个讯息的可能性多大?</view>
+			<view wx:if="{{companyinfo.zixun[0].type=='B'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">
+				如果公司市场空间小，出现这个讯息的可能性多大?</view>
+			<view wx:if="{{companyinfo.zixun[0].type=='C'}}" class="h6 padding-top-30 txt-bold" style="color:#333333">
+				如果公司管理团队较差，出现这个讯息的可能性多大?</view>
+
+
+			<view class="flex-row flex-center margin-top-30">
+
+				<view bindtap="daan2" data-id="1" class="{{daan2==1?'xz1':'xz'}} flex-1">肯定</view>
+				<view bindtap="daan2" data-id="2" class="{{daan2==2?'xz1':'xz'}} margin-left-40 flex-1">很可能</view>
+				<view bindtap="daan2" data-id="3" class="{{daan2==3?'xz1':'xz'}} margin-left-40 flex-1">不确定</view>
+				<view bindtap="daan2" data-id="4" class="{{daan2==4?'xz1':'xz'}} margin-left-40 flex-1">不太可能</view>
+			</view>
+
+		</view>
+	</view>
+	<view wx:else>
+		<view class="margin-top-20 h6 " style="color:#333333">你已处理完已有资讯，期待新的讯息。</view>
+		<view class=" h6" style="color:#333333">你还可以查看和修改过去的判断。</view>
+	</view>
+</view>
+<view style="height:200rpx"></view>
+<!-- <view class="container">
+
+	 <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas> 
+
+</view> -->
+
+
+<!-- 客服按钮 -->
+<view class="po-absolute wh-150" style="top:300rpx ;right:0">
+	<button open-type='contact' class="clear-button">
+
+
+		<view class="flex-row flex-center h-64">
+			<image src='{{uploadpath}}resource/{{res.erji}}' class='icon-14 margin-left-30'></image>
+			<view class="txt-6 h5 padding-left-10">客服</view>
+		</view>
+	</button>
+</view>

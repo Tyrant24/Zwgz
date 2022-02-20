@@ -1,0 +1,90 @@
+<!--pages/mine/mine.wxml-->
+<view class='bg-primary ' style='height:280rpx;width:100%'>
+	<view class="flex-row flex-center  padding-bottom-20 padding-top-70 margin-right-20">
+		<button class="clear-button btns " wx:if="{{memberinfo.avatarUrl==''}}"  bindtap="getUserProfile">
+
+			<view class="flex-row flex-center bg-primary padding-30">
+				<image class='icon-50 radius-50' src="{{uploadpath}}resource/{{res.weidenglutouxiang}}"> </image>
+				<!-- <view class="txt-white margin-left-20">{{UserInfo.nickName}}</view> -->
+				<view wx:if="{{memberinfo.avatarUrl==''}}" class="txt-white margin-left-20">点击登录</view>
+			</view>
+
+		</button>
+
+		<image class='icon-60 radius-50 margin-left-40 ' src='{{memberinfo.avatarUrl}}'></image>
+		<view class='txt-white margin-left-40'>{{memberinfo.nickName}}</view>
+		<image src="{{uploadpath}}resource/{{res.vip}}" class="vip_img margin-left-10" mode="widthFix" wx:if="{{memberinfo.ismember_value=='Y'}}"></image>
+		<view class="flex-1"></view>
+		<view class="xufei h5" bindtap="tovip">续费</view>
+	</view>
+
+	<view class="txt-white text-right h6 margin-right-20"  wx:if="{{memberinfo.ismember_value=='Y'}}">有效期:{{memberinfo.start_riqi+' - '+memberinfo.end_riqi}}</view>
+
+</view>
+<navigator url='/pages/valuationrecord/valuationrecord'
+	class='border-bottom:2rpx dashed #CECFCE; flex-row flex-center padding bg-white'>
+	<image src='{{uploadpath}}resource/{{res.jilu}}' class='icon-25'></image>
+	<view class='flex-1 padding-left-20'>估值记录</view>
+	<image src='{{uploadpath}}resource/{{res.right1}}' class='icon-15'></image>
+</navigator>
+
+
+<button class=' padding-20 bg-white' open-type='contact' style="border-bottom: 2rpx dashed #CECFCE; border-radius: 0; position: relative; left: 0rpx; top: 0rpx">
+	<view class='flex-row flex-center '>
+		<image src='{{uploadpath}}resource/{{res.lianxi}}' class='icon-25 margin-left-10'></image>
+		<view class='  padding-left-20'>联系客服</view>
+		<image class=' text-right1 ' style='margin-left:460rpx;' src='{{uploadpath}}resource/{{res.right1}}'
+			class='icon-15'></image>
+	</view>
+</button>
+
+<navigator url='/pages/zhifujilu/zhifujilu' class='flex-row flex-center padding bg-white'
+	style='border-bottom:2rpx dashed #CECFCE'>
+	<image src='{{uploadpath}}resource/{{res.kabao}}' class='icon-25'></image>
+	<view class='flex-1 padding-left-20'>支付记录</view>
+	<image src='{{uploadpath}}resource/{{res.right1}}' class='icon-15'></image>
+</navigator>
+
+<navigator url='/pages/aboutus/aboutus' class='flex-row flex-center padding bg-white'
+	style='border-bottom:2rpx dashed #CECFCE'>
+	<image src='{{uploadpath}}resource/{{res.aboutus}}' class='icon-25'></image>
+	<view class='flex-1 padding-left-20'>关于我们</view>
+	<image src='{{uploadpath}}resource/{{res.right1}}' class='icon-15'></image>
+</navigator>
+
+<navigator url='/pages/feedback/feedback' class='flex-row flex-center padding bg-white'
+	style='border-bottom:2rpx dashed #CECFCE'>
+	<image src='{{uploadpath}}resource/{{res.fankui}}' class='icon-25'></image>
+	<view class="flex-1 flex-row flex-bottom">
+		<view class=' padding-left-20'>补充资讯</view>
+		<!-- <view class="h6 margin-left-20 txt-primary">把你的资讯计入计算模型中。</view> -->
+	</view>
+
+	<image src='{{uploadpath}}resource/{{res.right1}}' class='icon-15'></image>
+	<!-- <view class='txt-gray'>weeask@163.com</view> -->
+</navigator>
+
+<view class='' animation='{{animationData}}' hidden='{{open!=1}}'>
+	<view class='bg' bindtap='bindclosedetails' style='height:100%'>
+		<view class='' style=''></view>
+	</view>
+	<view class='under'>
+
+		<view class=' flex-row flex-column'>
+			<view class='flex-row flex-center padding' bindtap='phoneCall' id='{{instinfo.tel}}'>
+				<view class='txt-black text-center'>电话：</view>
+				<view class='txt-green '>{{instinfo.tel}}</view>
+			</view>
+
+			<view class='flex-row flex-center margin-20 text-center'>
+				<view class='txt-black'>微信号：</view>
+				<view class='txt-black'>{{instinfo.wechat}}</view>
+				<view class='txt-primary margin-left-40' bindtap='binddobut'>复制</view>
+			</view>
+
+			<view class='margin-top-20' style='height:4rpx;background:#CECFCE;width:100%'></view>
+
+		</view>
+		<view bindtap='bindclosedetails' class='margin-top-20  text-center' style='width:100%'>取消</view>
+	</view>
+</view>

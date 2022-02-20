@@ -1,0 +1,7 @@
+/* pages/zhifujilu/zhifujilu.wxss */
+Page {
+  background: #F2F2F2;
+}
+view {
+  color: #0F0F0F;
+}

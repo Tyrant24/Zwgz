@@ -1,0 +1,40 @@
+	<view class="padding-30">
+		<view class="h7 margin-top-10 margin-left-10" style="color:#A0A0A0">下列数据来自用户平均值，不代表众问观点，不作为投资建议。</view>
+		<view class="h7 margin-top-5 margin-left-10" style="color:#A0A0A0">会员不限制估值公司上限</view>
+		<view wx:for="{{memberguzhilist}}"  bindtap="guzhi" data-id="{{item}}" class="list flex-row flex-center">
+
+			<view class="margin-left-20 " style="width:150rpx">
+
+				<view class="h4-5 txt-bold" style="color:#161616">{{item.company_name}}</view>
+				<view class="h7 margin-top-5" style="color:#A0A0A0">昨收价{{item.company_danqianjia}}</view>
+			</view>
+			<view class="flex-6 flex-row flex-center">
+				<view class="flex-1  flex-row flex-center">
+					<view class="flex-1"></view>
+					<view>
+						<view class="flex-row flex-center">
+							<view class="h4-5 txt-bold" style="color:{{item.P<item.lastP?'#00AB72':'#FF545D'}}">{{item.P*1000/10}} </view>
+									<view class="h7" style="color:{{item.P<item.lastP?'#00AB72':'#FF545D'}}">%</view>
+							<image wx:if="{{item.P<item.lastP}}" class="jiang" src='{{uploadpath}}resource/{{res.jiang}}'></image>
+							<image wx:else class="jiang" src='{{uploadpath}}resource/{{res.sheng}}'></image>
+						</view>
+						<view class="h7 margin-top-5" style="color:#A0A0A0">胜率</view>
+					</view>
+					<view class="flex-1"></view>
+				</view>
+
+				<view wx:if="{{item.member_id!=memberinfo.id}}" class="flex-row flex-column margin-right-40">
+
+					<image class=" icon-15" src='{{uploadpath}}resource/{{res.zixuan}}'></image>
+					<view class="h7 margin-top-15" style="color:#A0A0A0">加自选</view>
+				</view>
+				<view wx:if="{{item.member_id==memberinfo.id}}"  data-id="{{item.id}}" class="flex-row flex-column margin-right-40">
+
+					<image class=" icon-15" src='{{uploadpath}}resource/{{res.yitianjia}}'></image>
+					<view class="h7 margin-top-15" style="color:#A0A0A0">已添加</view>
+				</view>
+			</view>
+
+
+		</view>
+	</view>

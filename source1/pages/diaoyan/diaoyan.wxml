@@ -1,0 +1,103 @@
+<view class="flex-row flex-center padding-left-16 margin-top" style="position:relative;">
+  <image src="{{uploadpath}}resource/{{res.jinhao}}" mode="widthFix" class="jin_img"></image>
+  <view class="txt-bold txt-16">众问调研</view>
+  <view class="linese"></view>
+</view>
+<view class="{{isadd?'oy':''}}">
+  <view class="padding-left-16 " wx:for="{{list}}" wx:key='k' wx:for-index='idx'>
+    <view class="bortop"></view>
+    <view class="flex-row flex-center">
+      <view class="flex-1 flex-row flex-center">
+        <image src="{{item.member_avatarUrl}}" class="icon-40 radius-50"></image>
+        <view class="flex-1 margin-left-8">
+          <view class="h5 txt-16 txt-bold flex-row flex-center">{{item.member_nickName}} <view class="jinhua"
+              wx:if="{{item.zhiding_value=='Y'}}">精华</view>
+          </view>
+
+          <view class="flex-row flex-center margin-top-4" wx:if="{{item.xainshi=='A'}}">
+            <view class="h7 txt-59 margin-right-5">昨收{{item.company_danqianjia}}</view>
+            <view class="h7 txt-59 margin-right-5">目标价{{item.mubiaojia}}</view>
+            <view class="h7 txt-59">胜率{{item.P*1000/10}}%</view>
+          </view>
+        </view>
+      </view>
+      <!-- <view class="guanz h7">已关注</view> -->
+    </view>
+
+    <view class="h5-6 txt-16 margin-top-10 lh40" bindtap="xianshi" id='{{idx}}'>{{item.zongjie}}</view>
+    <view class="h6 flex-row flex-center" style="color:#F63C43;" bindtap="xianshi" id='{{idx}}'>
+      <view class="flex-1"></view>
+      显示全部
+      <image src="{{uploadpath}}resource/{{item.shou?res.topjiantou:res.xiajiantou}}" class="jiantou"></image>
+      <!-- <image src="{{uploadpath}}resource/{{res.topjiantou}}" class="jiantou"></image> -->
+    </view>
+
+    <view class="ans margin-top-20" wx:if="{{item.shou}}">
+      <view class="h6 margin-bottom-20" style="color:#A0A0A0">{{item.shijian_dateformat}}</view>
+      <view class="margin-bottom-30" wx:for="{{item.answers}}" wx:key='k' wx:for-item='dd' bindtap="toanswers" id="{{dd.diaoyan_id}}" data-item="{{dd}}">
+
+        <view class="h5-6 txt-16">{{dd.timu}}</view>
+        <view class="h5-6 lh40" style="color:#777777;margin-top:12rpx;">{{dd.name}}</view>
+      </view>
+      <view class="flex-row flex-center">
+       
+        <view class="flex-row flex-center zantong" bindtap="dianzan" id='{{item.id}}' data-idx="{{idx}}">
+          <image src="{{uploadpath}}resource/{{item.dianzan=='1'?res.zan:res.zan2}}" class="zans"></image>
+          <view class="txt-16 h7">赞同{{item.dianzan}}</view>
+          <view class="sline"></view>
+          <image src="{{uploadpath}}resource/{{res.xiala}}" class="xiala_img"></image>
+        </view>
+        <view class="flex-1"></view>
+      </view>
+    </view>
+
+
+  </view>
+</view>
+
+
+<view wx:if="{{list.length==0}}" class="flex-row flex-column">
+	<image class="null " src='{{uploadpath}}resource/{{res.null1}}'></image>
+	<view class="h5 margin-top" style="color:#777777">暂时没有调研</view>
+
+
+
+</view>
+<button class="clear-button btns " wx:if="{{memberinfo.avatarUrl=='' && isadd==false}}" open-type="getUserInfo"
+			bindgetuserinfo="getUserInfo" id='isadd'>
+      <image src="{{uploadpath}}resource/{{res.jia}}" class="jia_img" ></image>
+
+		</button>
+<image src="{{uploadpath}}resource/{{res.jia}}" class="jia_img" wx:if="{{memberinfo.avatarUrl!='' && isadd==false}}"  bindtap="adddiaoyan" ></image>
+<view class="height-100"></view>
+
+<view class="mask" wx:if="{{isadd}}"></view>
+<view class="posmid" wx:if="{{isadd}}">
+  <view class="text-center txt-16 txt-bold margin-top-30">分享你对{{company_name}}的调研记录</view>
+  <scroll-view scroll-y="true" style="height:80%">
+    <view class=" wenti">
+      <view wx:for="{{diaoyanlist}}" wx:key='k' wx:for-index='idx'>
+        <view class="h5-6 txt-16 txt-bold">{{item.name}}</view>
+        <textarea value="{{item.daan}}" bindinput="dananFn" id='{{idx}}' placeholder="{{item.inputs}}" placeholder-style="color:#cccccc;" cols="5" rows="2"
+          class="textae h5-6"></textarea>
+      </view>
+      <view class="h5-6 txt-16 txt-bold">谈谈你对上述数据的看法</view>
+      <textarea value="{{zongjie}}" bindinput="zongjieFn" placeholder="定性大于定量，谈谈你对公司的整体定性判断" placeholder-style="color:#cccccc;" cols="5" rows="2"
+        class="textae h5-6"></textarea>
+    </view>
+  </scroll-view>
+  <view class="height-20"></view>
+  <view class="flex-row flex-center padding-left-16 poab">
+    <view class="xsgz flex-row flex-center" bindtap="xianshiFn">
+      <image src="{{uploadpath}}resource/{{xainshi=='A'?res.xianshi:res.xianshi2}}" class="xianshi_img"></image>
+      <view class="h5" style="color:#595959">{{xainshi=='A'?'显示估值':'不显示估值'}}</view>
+    </view>
+    <view class="flex-1"></view>
+    <view class="haole h6" bindtap="tijiao">好了</view>
+  </view>
+
+</view>
+<view class="flex-row flex-column" wx:if="{{isadd}}">
+
+  <image src="{{uploadpath}}resource/{{res.guanbi}}"  class="guanbi" bindtap="quxiao"></image>
+</view>

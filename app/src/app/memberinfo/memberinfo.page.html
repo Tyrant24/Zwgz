@@ -1,0 +1,53 @@
+<!--
+  Generated template for the MemberInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button (click)='back()'>
+          <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>我的内容</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-content>
+    <div class="padding-20 white-block " style="padding-bottom: 0px">
+      <div class="flex-row flex-center border-bottom" style="height:60px;">
+        <div class="txt-gray">头像</div>
+        <div class="flex-1"></div>
+        <div (click)="selectPhoto()"> 
+          <img *ngIf="MemberInfo!=undefined" class="icon-50 radius-50" [src]="getMemberLogo(MemberInfo.avatarUrl)"  />
+        </div>
+        <div class="margin-left">
+          <img [src]='uploadpath+"resource/"+res.arrowright' class="icon-20" />
+        </div>
+      </div>
+    </div>
+    <div class="padding-20 white-block " style="padding-top: 0px;padding-bottom: 0px">
+      <div class="flex-row flex-center border-bottom" style="height:60px;padding-bottom: 0px">
+        <div class="txt-gray">昵称</div>
+        <div class="flex-1 text-right" > 
+          <input  *ngIf="MemberInfo!=undefined" class="text-right" (change)="nameChange()" [(ngModel)]='MemberInfo.nickName' maxlength="20" />
+        </div>
+        <div class="margin-left">
+          <img [src]='uploadpath+"resource/"+res.arrowright' class="icon-20" />
+        </div>
+      </div>
+    </div>
+    <div class="padding-20 white-block " style="padding-top: 0px;">
+      <div class="flex-row flex-center border-bottom" style="height:60px;">
+        <div class="txt-gray">手机</div>
+        <div class="flex-1 text-right" > 
+          <input *ngIf="MemberInfo!=undefined" class="text-right" readonly [(ngModel)]='MemberInfo.mobile' maxlength="20" />
+        </div>
+      </div>
+    </div>
+  
+  </ion-content>
+  
